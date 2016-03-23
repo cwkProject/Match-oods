@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/toolbar_default_title"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_marginTop="@dimen/row_default_divide_height"
+                android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="@dimen/edit_default_height">
+
+               <!-- <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:scaleType="center"
+                    android:src="@mipmap/start_large_icon"/> -->
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/text_start"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+
+                <TextView
+                    android:id="@+id/activity_transaction_content_start_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="起点"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="@dimen/row_default_divide_height"
+                android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="@dimen/edit_default_height">
+
+              <!--  <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:scaleType="center"
+                    android:src="@mipmap/end_large_icon"/> -->
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/text_end"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+
+                <TextView
+                    android:id="@+id/activity_transaction_content_end_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="终点"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="@dimen/table_layout_row_margin"
+                android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="@dimen/text_more_large_height">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/text_transaction_amount"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+                <!--  <ImageView
+                      android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_column="0"
+                      android:layout_marginLeft="@dimen/text_view_default_text_padding_left"
+                      android:layout_weight="3"
+                      android:padding="10dp"
+                      android:scaleType="center"
+                      android:src="@mipmap/money_large_icon"/> -->
+
+                <TextView
+                    android:id="@+id/activity_transaction_content_fee_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:drawableLeft="@mipmap/money_icon"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="40dp"
+                    android:text="费用"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size_more_large"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="@dimen/table_layout_row_margin"
+                android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="@dimen/edit_default_height">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/text_goods_owner"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+                <TextView
+                    android:id="@+id/activity_transaction_content_debit_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="货主名称"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="@dimen/table_layout_row_margin"
+                android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="@dimen/edit_default_height">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/text_goods_name"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+                <TextView
+                    android:id="@+id/activity_transaction_content_goods_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="货物名称"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="@dimen/row_default_divide_height"
+                android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="@dimen/edit_default_height">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/text_create_time"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+                <TextView
+                    android:id="@+id/activity_transaction_content_time_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="2015/7/1 11:58:30"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="@dimen/row_default_divide_height"
+                android:background="@color/white"
+                android:gravity="center"
+                android:minHeight="@dimen/edit_default_height">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/text_form_id"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+                <TextView
+                    android:id="@+id/activity_transaction_content_ID_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="1951A407932F9040E053A86401699040"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size_small"/>
+
+            </TableRow>
+
+
+        </TableLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/activity_transaction_content_state_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="@dimen/row_default_divide_height"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:minHeight="@dimen/text_large_height"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/activity_transaction_content_state_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="交易状态"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_view_default_text_size_large"/>
+
+    </LinearLayout>
+
+</LinearLayout>

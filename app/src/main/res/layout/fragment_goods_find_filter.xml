@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_vertical"
+              android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/fragment_goods_find_filter_start_textView"
+        style="?attr/spinnerStyle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:hint="@string/text_start_location"/>
+
+    <TextView
+        android:id="@+id/fragment_goods_find_filter_end_textView"
+        style="?attr/spinnerStyle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:hint="@string/text_end_location"/>
+
+    <TextView
+        android:id="@+id/fragment_goods_find_filter_goods_textView"
+        style="?attr/spinnerStyle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:hint="@string/text_goods"/>
+
+    <TextView
+        android:id="@+id/fragment_goods_find_filter_vehicle_textView"
+        style="?attr/spinnerStyle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:hint="@string/text_models"/>
+
+</LinearLayout>

@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">速配货司机</string>
+
+    <string name="fragment_rationing_start_hint">请输入出发地</string>
+    <string name="fragment_rationing_end_hint">请输入目的地</string>
+    <string name="fragment_rationing_button">找  货</string>
+
+    <string name="search_title">搜索</string>
+
+    <string name="title_app_name">速配货</string>
+    <string name="title_register">注册</string>
+    <string name="title_login">登录</string>
+
+    <string name="title_identity_authentication">实名认证</string>
+    <string name="title_my_wallet">我的钱包</string>
+    <string name="title_feedback">信息反馈</string>
+    <string name="title_about">关于速配货</string>
+    <string name="title_customer_service">云港客服 0518-82389156</string>
+
+    <string name="title_goods_find">查找货源</string>
+    <string name="title_publish_empty_car">发布空车</string>
+    <string name="title_my_transaction">我的交易</string>
+    <string name="title_transaction_content">交易详情</string>
+    <string name="title_goods_hall">货源大厅</string>
+    <string name="title_car_field">网上车源</string>
+    <string name="title_identity_verification">身份验证</string>
+    <string name="title_goods_content">货源详情</string>
+
+    <string name="title_order_form">我的订单</string>
+
+    <string name="view_pager_title_main">找货</string>
+    <string name="view_pager_title_message">功能</string>
+    <string name="view_pager_title_mine">我的</string>
+    <string name="view_pager_title_explore">消息</string>
+
+    <string name="register_button">注 册</string>
+    <string name="activity_register_mobile_edit_hint">请输入手机号</string>
+    <string name="password_edit_hint">请输入密码</string>
+    <string name="password_edit_second_hint">请再次输入密码</string>
+    <string name="double_password_different">两次密码不一致</string>
+    <string name="info_incomplete">信息不完整</string>
+    <string name="no_login">未登录，请先登录</string>
+
+    <string name="transaction_success">交易成功</string>
+    <string name="transaction_await">等待支付</string>
+    <string name="transaction_cancel">交易取消</string>
+    <string name="transaction_failed">交易失败</string>
+
+    <string name="payment_alert_title">支付确认</string>
+    <string name="payment_alert_message">支付金额：</string>
+    <string name="payment_alert_ok">支付</string>
+    <string name="payment_alert_cancel">取消</string>
+
+    <string name="login_button">登 录</string>
+    <string name="activity_login_user_name_hint">请输入用户名/手机号</string>
+    <string name="text_name">姓名</string>
+    <string name="edit_hint_name">请输入姓名</string>
+    <string name="text_id_card">身份证</string>
+    <string name="edit_hint_id_card">请输入身份证号</string>
+    <string name="text_license_plate_number">车牌号</string>
+    <string name="edit_hint_license_plate_number">请输入车牌号</string>
+
+    <string name="edit_hint_models">请选择车型</string>
+    <string name="text_car_length">车长(米)</string>
+    <string name="edit_hint_car_length">请选择车长</string>
+    <string name="text_load">载重(吨)</string>
+    <string name="edit_hint_load">请输入载重</string>
+    <string name="text_driving_license">驾驶证</string>
+    <string name="text_driving_permit">行驶证</string>
+    <string name="identity_button_title">提交认证</string>
+    <string name="exit_login_button">退出登录</string>
+    <string name="publish_car_button">确认发布</string>
+    <string name="text_back_car">回程车</string>
+    <string name="text_favorable">优惠</string>
+
+    <string name="text_start_location">始发地</string>
+    <string name="text_end_location">目的地</string>
+    <string name="text_goods">货物</string>
+    <string name="text_models">车型</string>
+
+    <string name="edit_province_hint">省</string>
+    <string name="edit_city_hint">市</string>
+
+    <string name="approximately">约</string>
+    <string name="unit_quality_tons">吨</string>
+    <string name="unit_volume_cubic_meter">立方米</string>
+    <string name="unit_distance_kilometer">公里</string>
+    <string name="unit_length_meter">米</string>
+    <string name="text_goods_name">货\t物\t名\t称</string>
+    <string name="text_create_time">创\t建\t时\t间</string>
+    <string name="text_goods_owner">发\t\t货\t\t人</string>
+    <string name="text_form_id">交\t易\t单\t号</string>
+    <string name="text_transaction_amount">交\t易\t金\t额</string>
+    <string name="revoked_empty_car_button">撤销发布</string>
+    <string name="text_end">目\t\t的\t\t地</string>
+    <string name="text_start">始\t\t发\t\t地</string>
+
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_activity_notify_list">NotifyListActivity</string>
+    <string name="title_activity_notify_detail">NotifyDetailActivity</string>
+    <string name="action_notify_settings">View Notify Settings</string>
+    <string name="action_notify_message">View Notification</string>
+    <string name="action_all_messages">查看所有通知</string>
+    <string name="notifications_enabled">开启通知</string>
+    <string name="notifications_disabled">关闭通知</string>
+    <string name="receive_push_messages">接收消息</string>
+    <string name="do_not_receive_push_messages">不接收消息</string>
+    <string name="sound">声音</string>
+    <string name="play_sound_for_notifications">播放通知声音</string>
+    <string name="vibrate">震动</string>
+    <string name="vibrate_the_phone_for_notifications">有通知时手机震动</string>
+    <string name="title_activity_notify_setting">通知设置</string>
+    <string name="permission_phone">请在系统应用权限设置中开通本应用的通话权限</string>
+
+    <string name="edit_start_hint">始发地</string>
+    <string name="edit_end_hint">目的地</string>
+    <string name="distance_label_text">估算距离</string>
+    <string name="goods_name_label_text">货物名称</string>
+    <string name="goods_weight_label_text">货物重量</string>
+    <string name="goods_volume_label_text">货物体积</string>
+    <string name="models_label_text">要求车型</string>
+    <string name="vehicle_length_label_text">要求车长</string>
+    <string name="publish_time_label_text">发布时间</string>
+
+</resources>

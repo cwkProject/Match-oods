@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="?selectableItemBackground"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/default_spacing"
+        android:paddingLeft="@dimen/layout_padding"
+        android:paddingRight="12dp"
+        android:paddingTop="@dimen/default_spacing">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_spacing"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/goods_supply_find_contact_textView"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/default_spacing"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/goods_supply_find_time_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/default_spacing"
+                android:layout_weight="1"
+                android:text="发布时间"
+                android:textSize="@dimen/text_view_default_text_size_small"/>
+
+            <ImageButton
+                android:id="@+id/goods_supply_find_call_button"
+                android:layout_width="@dimen/action_button_mini_size"
+                android:layout_height="@dimen/action_button_mini_size"
+                android:background="?selectableItemBackground"
+                android:padding="@dimen/image_default_inner_padding"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/phone_icon"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/goods_supply_find_content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/goods_supply_find_layout_spacing"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/default_spacing"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/goods_supply_find_route_start_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/default_spacing"
+                    android:layout_weight="1"
+                    android:drawableLeft="@mipmap/start_icon"
+                    android:drawablePadding="@dimen/default_spacing"
+                    android:text="起点"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size"/>
+
+                <TextView
+                    android:id="@+id/goods_supply_find_route_end_textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@mipmap/end_icon"
+                    android:drawablePadding="@dimen/default_spacing"
+                    android:text="终点"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/default_spacing"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/goods_supply_find_goods_name_textView"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/default_spacing"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/goods_supply_find_distance_textView"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/default_spacing"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/goods_supply_find_goods_weight_textView"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/default_spacing"/>
+
+                <TextView
+                    android:id="@+id/goods_supply_find_goods_vehicle_type_textView"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/default_spacing"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

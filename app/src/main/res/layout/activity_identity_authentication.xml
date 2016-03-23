@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/toolbar_default_title"/>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/activity_identity_authentication_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/table_layout_row_margin"
+                android:layout_marginTop="@dimen/table_layout_row_margin"
+                android:orientation="vertical">
+
+                <TableRow
+                    android:layout_marginTop="@dimen/row_default_divide_height"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:minHeight="@dimen/edit_default_height">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                        android:paddingRight="@dimen/text_view_default_text_padding_right"
+                        android:text="@string/text_name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+
+                    <EditText
+                        android:id="@+id/activity_identity_authentication_name_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_weight="5"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint="@string/edit_hint_name"
+                        android:paddingLeft="@dimen/edit_default_padding_left"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="@dimen/row_default_divide_height"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:minHeight="@dimen/edit_default_height">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                        android:paddingRight="@dimen/text_view_default_text_padding_right"
+                        android:text="@string/text_id_card"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+
+                    <EditText
+                        android:id="@+id/activity_identity_authentication_id_card_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_weight="5"
+			android:digits="0123456789X"
+			android:maxLength="18"
+			android:inputType="number"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint="@string/edit_hint_id_card"
+                        android:paddingLeft="@dimen/edit_default_padding_left"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="@dimen/table_layout_row_margin"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:minHeight="@dimen/edit_default_height">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                        android:paddingRight="@dimen/text_view_default_text_padding_right"
+                        android:text="@string/text_license_plate_number"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+
+                    <Button
+                        android:id="@+id/activity_identity_authentication_vehicle_number_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="1"
+                        android:background="@color/blue"
+                        android:text="京"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/button_default_text_size"/>
+
+                    <EditText
+                        android:id="@+id/activity_identity_authentication_vehicle_number_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_weight="4"
+                        android:background="@color/white"
+                        android:digits="0123456789ABCDEFGHIGKLMNOPQRSTUVWXYZ"
+			android:maxLength="6"
+                        android:gravity="center_vertical"
+                        android:hint="@string/edit_hint_license_plate_number"
+                        android:inputType="number"
+                        android:paddingLeft="@dimen/edit_default_padding_left"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="@dimen/row_default_divide_height"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:minHeight="@dimen/edit_default_height">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                        android:paddingRight="@dimen/text_view_default_text_padding_right"
+                        android:text="@string/text_models"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+
+                    <EditText
+                        android:id="@+id/activity_identity_authentication_models_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_weight="5"
+                        android:background="@color/white"
+                        android:focusableInTouchMode="false"
+                        android:gravity="center_vertical"
+                        android:hint="@string/edit_hint_models"
+                        android:paddingLeft="@dimen/edit_default_padding_left"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="@dimen/row_default_divide_height"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:minHeight="@dimen/edit_default_height">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                        android:paddingRight="@dimen/text_view_default_text_padding_right"
+                        android:text="@string/text_car_length"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+
+                    <EditText
+                        android:id="@+id/activity_identity_authentication_car_length_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_weight="5"
+                        android:background="@color/white"
+                        android:focusableInTouchMode="false"
+                        android:gravity="center_vertical"
+                        android:hint="@string/edit_hint_car_length"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="@dimen/edit_default_padding_left"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="@dimen/row_default_divide_height"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:minHeight="@dimen/edit_default_height">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                        android:paddingRight="@dimen/text_view_default_text_padding_right"
+                        android:text="@string/text_load"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+
+                    <EditText
+                        android:id="@+id/activity_identity_authentication_load_edit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_weight="5"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint="@string/edit_hint_load"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="@dimen/edit_default_padding_left"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="@dimen/table_layout_row_margin"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:minHeight="@dimen/edit_default_height">
+
+                    <!--  <TextView
+                          android:layout_width="0dp"
+                          android:layout_height="@dimen/edit_default_height"
+                          android:layout_column="0"
+                          android:layout_weight="2"
+                          android:background="@color/white"
+                          android:gravity="center_vertical"
+                          android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                          android:paddingRight="@dimen/text_view_default_text_padding_right"
+                          android:text="@string/text_id_card"
+                          android:textColor="@color/black"
+                          android:textSize="@dimen/text_view_default_text_size"/>
+      -->
+                    <TextView
+                        android:id="@+id/activity_identity_authentication_id_card_camera"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="5"
+                        android:drawableRight="@android:drawable/ic_menu_camera"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                        android:paddingRight="@dimen/text_view_camera_padding_right"
+                        android:text="@string/text_id_card"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="@dimen/row_default_divide_height"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:minHeight="@dimen/edit_default_height">
+
+                    <!--  <TextView
+                          android:layout_width="0dp"
+                          android:layout_height="@dimen/edit_default_height"
+                          android:layout_column="0"
+                          android:layout_weight="2"
+                          android:background="@color/white"
+                          android:gravity="center_vertical"
+                          android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                          android:paddingRight="@dimen/text_view_default_text_padding_right"
+                          android:text="@string/text_driving_license"
+                          android:textColor="@color/black"
+                          android:textSize="@dimen/text_view_default_text_size"/>
+      -->
+                    <TextView
+                        android:id="@+id/activity_identity_authentication_driving_license_camera"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="5"
+                        android:drawableRight="@android:drawable/ic_menu_camera"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                        android:paddingRight="@dimen/text_view_camera_padding_right"
+                        android:text="@string/text_driving_license"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="@dimen/row_default_divide_height"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:minHeight="@dimen/edit_default_height">
+
+                    <!--  <TextView
+                          android:layout_width="0dp"
+                          android:layout_height="@dimen/edit_default_height"
+                          android:layout_column="0"
+                          android:layout_weight="2"
+                          android:background="@color/white"
+                          android:gravity="center_vertical"
+                          android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                          android:paddingRight="@dimen/text_view_default_text_padding_right"
+                          android:text="@string/text_driving_permit"
+                          android:textColor="@color/black"
+                          android:textSize="@dimen/text_view_default_text_size"/>
+      -->
+                    <TextView
+                        android:id="@+id/activity_identity_authentication_driving_permit_camera"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_weight="5"
+                        android:drawableRight="@android:drawable/ic_menu_camera"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/text_view_default_text_padding_left"
+                        android:paddingRight="@dimen/text_view_camera_padding_right"
+                        android:text="@string/text_driving_permit"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_view_default_text_size"/>
+                </TableRow>
+
+                <Button
+                    android:id="@+id/activity_identity_authentication_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_default_height"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/orange"
+                    android:text="@string/identity_button_title"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/button_default_text_size"
+                    android:textStyle="bold"/>
+
+                <TableRow
+                    android:layout_marginTop="10dp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"/>
+                </TableRow>
+            </TableLayout>
+        </ScrollView>
+
+        <fragment
+            android:id="@+id/activity_identity_authentication_navigation_drawer"
+            android:name="com.port.ocean.shipping.fragment.SelectListFragment"
+            android:layout_width="@dimen/navigation_drawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            tools:layout="@layout/fragment_select_list"/>
+
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/fragment_mine_user_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mine_function_image_margin_left"
+            android:layout_marginRight="@dimen/mine_function_image_margin_right"
+            android:minHeight="@dimen/list_item_default_height"
+            android:padding="@dimen/image_default_padding"
+            android:src="@mipmap/user_large_icon"/>
+
+        <TextView
+            android:id="@+id/fragment_mine_user_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mine_function_text_margin_left"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_view_default_text_size"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/fragment_mine_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        android:id="@+id/fragment_mine_exit_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_default_height"
+        android:layout_gravity="bottom"
+        android:layout_margin="20dp"
+        android:background="@color/orange"
+        android:text="@string/exit_login_button"
+        android:textColor="@color/white"
+        android:textSize="@dimen/button_default_text_size"
+        android:textStyle="bold"/>
+
+</LinearLayout>

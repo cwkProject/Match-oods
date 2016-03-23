@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/table_layout_row_margin"
+        android:layout_marginTop="@dimen/table_layout_row_margin"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TableRow
+            android:layout_marginTop="@dimen/row_default_divide_height"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:minHeight="@dimen/table_row_default_height">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:scaleType="center"
+                android:src="@mipmap/start_large_icon"/>
+
+            <TextView
+                android:id="@+id/fragment_revoked_empty_car_start_route_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:text="起点"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_view_default_text_size"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="@dimen/row_default_divide_height"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:minHeight="@dimen/table_row_default_height">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:scaleType="center"
+                android:src="@mipmap/end_large_icon"/>
+
+            <TextView
+                android:id="@+id/fragment_revoked_empty_car_end_route_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:text="终点"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_view_default_text_size"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:minHeight="@dimen/table_row_default_height">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/fragment_revoked_empty_car_back_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="回程车"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/fragment_revoked_empty_car_rebate_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:text="优惠"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_default_text_size"/>
+            </LinearLayout>
+
+
+        </TableRow>
+
+        <Button
+            android:id="@+id/fragment_revoked_empty_car_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_default_height"
+            android:layout_marginTop="20dp"
+            android:background="@color/orange"
+            android:text="@string/revoked_empty_car_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_default_text_size"
+            android:textStyle="bold"/>
+    </TableLayout>
+
+</LinearLayout>
