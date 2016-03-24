@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <include layout="@layout/toolbar_default_title"/>
+    <include layout="@layout/toolbar"/>
     <fragment
         android:id="@+id/activity_test_fragment"
         android:name="com.port.ocean.shipping.fragment.ExploreFragment"

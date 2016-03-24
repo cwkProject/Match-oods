@@ -23,8 +23,8 @@
     <dimen name="personal_info_row_margin_right">5dp</dimen>
 
     <dimen name="edit_default_height">54dp</dimen>
-    <dimen name="edit_default_padding_left">5dp</dimen>
-    <dimen name="edit_default_margin_left">5dp</dimen>
+    <dimen name="edit_default_padding_left">8dp</dimen>
+    <dimen name="edit_default_margin_left">8dp</dimen>
 
     <dimen name="image_default_padding">2dp</dimen>
     <dimen name="image_default_margin_left">5dp</dimen>
@@ -38,8 +38,8 @@
     <dimen name="text_more_large_height">96dp</dimen>
     <dimen name="text_large_height">72dp</dimen>
 
-    <dimen name="text_view_default_text_padding_left">15dp</dimen>
-    <dimen name="text_view_default_text_padding_right">10dp</dimen>
+    <dimen name="text_view_default_text_padding_left">16dp</dimen>
+    <dimen name="text_view_default_text_padding_right">8dp</dimen>
     <dimen name="text_view_large_text_padding_right">25dp</dimen>
     <dimen name="text_view_default_drawable_padding">5dp</dimen>
     <dimen name="text_view_camera_padding_right">10dp</dimen>

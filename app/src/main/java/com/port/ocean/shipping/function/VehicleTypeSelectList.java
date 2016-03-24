@@ -93,8 +93,14 @@ public class VehicleTypeSelectList implements ISelectList<View, String> {
 
             VehicleTypeListFunction listFunction = (VehicleTypeListFunction) baseDataListFunction;
 
-            List<String> dataList = new ArrayList<>(listFunction.getDataList());
-            dataList.add(0, context.getString(org.mobile.library.R.string.any));
+            List<String> dataList;
+
+            if (listFunction.getDataList() != null) {
+                dataList = new ArrayList<>(listFunction.getDataList());
+                dataList.add(0, context.getString(org.mobile.library.R.string.any));
+            } else {
+                dataList = new ArrayList<>();
+            }
 
             OnlyTextRecyclerViewAdapter adapter = new OnlyTextRecyclerViewAdapter(dataList);
 

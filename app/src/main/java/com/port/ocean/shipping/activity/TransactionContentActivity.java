@@ -16,10 +16,10 @@ import android.widget.Toast;
 
 import com.port.ocean.shipping.R;
 import com.port.ocean.shipping.data.Transaction;
-import com.port.ocean.shipping.util.MemoryValue;
 import com.port.ocean.shipping.util.StaticValue;
 import com.port.ocean.shipping.work.Payment;
 
+import org.mobile.library.global.GlobalApplication;
 import org.mobile.library.model.work.WorkBack;
 
 /**
@@ -86,8 +86,8 @@ public class TransactionContentActivity extends AppCompatActivity {
      */
     private void loadData() {
         Intent intent = getIntent();
-        transaction = (Transaction) intent.getSerializableExtra(StaticValue
-                .IntentTag.TRANSACTION_CONTENT_TAG);
+        transaction = (Transaction) intent.getSerializableExtra(StaticValue.IntentTag
+                .TRANSACTION_CONTENT_TAG);
     }
 
     /**
@@ -159,7 +159,8 @@ public class TransactionContentActivity extends AppCompatActivity {
             }
         });
 
-        payment.beginExecute(MemoryValue.getMemoryValue().getUserID(), transaction.getGoodsId());
+        payment.beginExecute(GlobalApplication.getLoginStatus().getUserID(), transaction
+                .getGoodsId());
     }
 
     /**

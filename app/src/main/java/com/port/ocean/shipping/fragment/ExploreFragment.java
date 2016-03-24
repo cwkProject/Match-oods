@@ -18,12 +18,13 @@ import com.port.ocean.shipping.R;
 import com.port.ocean.shipping.activity.CarFieldActivity;
 import com.port.ocean.shipping.activity.GoodsSupplyFindActivity;
 import com.port.ocean.shipping.activity.LoginActivity;
+import com.port.ocean.shipping.activity.PublishEmptyCarActivity;
 import com.port.ocean.shipping.activity.TransactionListActivity;
 import com.port.ocean.shipping.adapter.ExploreFunctionItemViewHolder;
 import com.port.ocean.shipping.adapter.ExploreFunctionRecyclerViewAdapter;
 import com.port.ocean.shipping.bean.FunctionItem;
-import com.port.ocean.shipping.util.MemoryValue;
 
+import org.mobile.library.global.GlobalApplication;
 import org.mobile.library.model.operate.OnItemClickListenerForRecyclerViewItem;
 
 import java.util.ArrayList;
@@ -127,7 +128,7 @@ public class ExploreFragment extends Fragment {
      */
     private void onItemClick(int position) {
 
-        if (!MemoryValue.getMemoryValue().isLogin()) {
+        if (!GlobalApplication.getLoginStatus().isLogin()) {
             // 未登录
             // 新建意图,跳转到登录页面
             Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -144,7 +145,7 @@ public class ExploreFragment extends Fragment {
                 break;
             case 1:
                 // 发布空车
-                //startActivity(new Intent(getActivity(), PublishEmptyCarActivity.class));
+                startActivity(new Intent(getActivity(), PublishEmptyCarActivity.class));
                 break;
             case 2:
                 // 我的交易

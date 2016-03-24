@@ -5,6 +5,8 @@ package com.port.ocean.shipping.activity;
 
 import android.content.Intent;
 
+import com.port.ocean.shipping.function.LoadUserInfo;
+
 import org.mobile.library.model.activity.BaseRegisterActivity;
 
 /**
@@ -25,6 +27,8 @@ public class RegisterActivity extends BaseRegisterActivity {
      * 跳转到主界面
      */
     private void goMain() {
+        // 加载用户数据
+        LoadUserInfo.onLoadUserInfo();
         Intent mainIntent = new Intent(this, MainActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

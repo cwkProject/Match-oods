@@ -4,33 +4,35 @@ package com.port.ocean.shipping.activity;
  */
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.port.ocean.shipping.R;
 import com.port.ocean.shipping.data.IdentityInfoData;
-import com.port.ocean.shipping.fragment.SelectListFragment;
 import com.port.ocean.shipping.function.LoadUserInfo;
 import com.port.ocean.shipping.function.VehicleLengthSelectList;
 import com.port.ocean.shipping.function.VehiclePlateSelectList;
 import com.port.ocean.shipping.function.VehicleTypeSelectList;
-import com.port.ocean.shipping.util.MemoryValue;
 import com.port.ocean.shipping.work.IdentityAuthenticate;
 import com.port.ocean.shipping.work.PullIdentityInfo;
 
 import org.mobile.library.common.dialog.SimpleDialog;
 import org.mobile.library.common.function.InputMethodController;
-import org.mobile.library.model.operate.DataChangeObserver;
+import org.mobile.library.global.GlobalApplication;
+import org.mobile.library.model.function.ISelectList;
 import org.mobile.library.model.work.WorkBack;
 
 /**
@@ -56,29 +58,29 @@ public class IdentityActivity extends AppCompatActivity {
      */
     private class ViewHolder {
         /**
-         * 抽屉布局
+         * 用于显示选择列表的窗口
          */
-        public DrawerLayout drawerLayout = null;
+        public PopupWindow popupWindow = null;
 
         /**
-         * 抽屉布局中的选择列表
+         * 弹出窗口的内容布局
          */
-        public ListView selectListView = null;
+        public CardView cardView = null;
 
         /**
          * 车长选择工具
          */
-        public VehicleLengthSelectList vehicleLengthSelectDrawer = null;
+        public VehicleLengthSelectList vehicleLengthSelectList = null;
 
         /**
          * 车牌选择工具
          */
-        public VehiclePlateSelectList vehiclePlateSelectDrawer = null;
+        public VehiclePlateSelectList vehiclePlateSelectList = null;
 
         /**
          * 车型选择工具
          */
-        public VehicleTypeSelectList vehicleTypeSelectDrawer = null;
+        public VehicleTypeSelectList vehicleTypeSelectList = null;
 
         /**
          * 认证按钮
@@ -162,12 +164,12 @@ public class IdentityActivity extends AppCompatActivity {
         setTitle(R.string.title_identity_authentication);
         // 初始化控件集
         initViewHolder();
+        // 初始化弹出框
+        initPopupWindow();
         // 初始化认证按钮
         initButton();
         // 初始化拍照按钮
         initCamera();
-        // 初始化抽屉布局
-        initDrawer();
         // 初始化选择输入框点击事件
         initSelectEdit();
     }
@@ -176,25 +178,17 @@ public class IdentityActivity extends AppCompatActivity {
      * 初始化控件集引用
      */
     private void initViewHolder() {
-        // 抽屉布局
-        viewHolder.drawerLayout = (DrawerLayout) findViewById(R.id
-                .activity_identity_authentication_drawer_layout);
-
-        // 选择列表
-        SelectListFragment selectListFragment = (SelectListFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.activity_identity_authentication_navigation_drawer);
-
-        viewHolder.selectListView = selectListFragment.getListView();
+        // 弹出窗口布局
+        viewHolder.cardView = (CardView) LayoutInflater.from(this).inflate(R.layout
+                .layout_bottom_popup_window, null);
+        viewHolder.popupWindow = new PopupWindow(this);
 
         // 车长选择工具
-        viewHolder.vehicleLengthSelectDrawer = new VehicleLengthSelectList(this, viewHolder
-                .selectListView);
+        viewHolder.vehicleLengthSelectList = new VehicleLengthSelectList(this);
         // 车牌选择工具
-        viewHolder.vehiclePlateSelectDrawer = new VehiclePlateSelectList(this, viewHolder
-                .selectListView);
+        viewHolder.vehiclePlateSelectList = new VehiclePlateSelectList(this);
         // 车型选择工具
-       // viewHolder.vehicleTypeSelectDrawer = new VehicleTypeSelectList(this, viewHolder
-           //     .selectListView);
+        viewHolder.vehicleTypeSelectList = new VehicleTypeSelectList(this);
 
         // 姓名输入框
         viewHolder.nameEditText = (EditText) findViewById(R.id
@@ -231,11 +225,30 @@ public class IdentityActivity extends AppCompatActivity {
     }
 
     /**
-     * 初始化抽屉布局
+     * 初始化弹出框
      */
-    private void initDrawer() {
-        // 抽屉布局
-        viewHolder.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    private void initPopupWindow() {
+        viewHolder.popupWindow.setContentView(viewHolder.cardView);
+        viewHolder.popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        viewHolder.popupWindow.setHeight(getResources().getDimensionPixelOffset(R.dimen
+                .filter_popup_window_height));
+        viewHolder.popupWindow.setFocusable(true);
+        viewHolder.popupWindow.setOutsideTouchable(true);
+        viewHolder.popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    }
+
+    /**
+     * 显示PopupWindow
+     *
+     * @param anchor 依附的布局
+     * @param view   要显示的布局
+     */
+    private void showPopupWindow(View anchor, View view) {
+        if (!viewHolder.popupWindow.isShowing()) {
+            viewHolder.cardView.removeAllViews();
+            viewHolder.cardView.addView(view);
+            viewHolder.popupWindow.showAsDropDown(anchor);
+        }
     }
 
     /**
@@ -259,26 +272,24 @@ public class IdentityActivity extends AppCompatActivity {
         viewHolder.vehicleTypeEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 关闭软键盘
-                InputMethodController.CloseInputMethod(IdentityActivity.this);
-                // 先关闭抽屉
-                closeDrawer();
-                // 配置选择器
-              //  viewHolder.vehicleTypeSelectDrawer.selectSetting();
-                // 再打开抽屉
-                openDrawer();
+                showPopupWindow(v, viewHolder.vehicleTypeSelectList.loadSelect());
             }
         });
 
         // 设置选择结果回调
-//        viewHolder.vehicleTypeSelectDrawer.setSelectFinishedListener(new DataChangeObserver<String>() {
-//            @Override
-//            public void notifyDataChange(String data) {
-//                viewHolder.vehicleTypeEditText.setText(data);
-//                // 关闭抽屉
-//                closeDrawer();
-//            }
-//        });
+        viewHolder.vehicleTypeSelectList.setOnSelectedListener(new ISelectList
+                .OnSelectedListener<View, String>() {
+            @Override
+            public void onFinish(String s) {
+                viewHolder.vehicleTypeEditText.setText(s);
+                viewHolder.popupWindow.dismiss();
+            }
+
+            @Override
+            public void onCancel(View view) {
+
+            }
+        });
     }
 
     /**
@@ -290,24 +301,22 @@ public class IdentityActivity extends AppCompatActivity {
         viewHolder.vehicleLengthEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 关闭软键盘
-                InputMethodController.CloseInputMethod(IdentityActivity.this);
-                // 先关闭抽屉
-                closeDrawer();
-                // 配置选择器
-                viewHolder.vehicleLengthSelectDrawer.selectSetting();
-                // 再打开抽屉
-                openDrawer();
+                showPopupWindow(v, viewHolder.vehicleLengthSelectList.loadSelect());
             }
         });
 
         // 设置选择结果回调
-        viewHolder.vehicleLengthSelectDrawer.setSelectFinishedListener(new DataChangeObserver<String>() {
+        viewHolder.vehicleLengthSelectList.setOnSelectedListener(new ISelectList
+                .OnSelectedListener<View, String>() {
             @Override
-            public void notifyDataChange(String data) {
-                viewHolder.vehicleLengthEditText.setText(data);
-                // 关闭抽屉
-                closeDrawer();
+            public void onFinish(String s) {
+                viewHolder.vehicleLengthEditText.setText(s);
+                viewHolder.popupWindow.dismiss();
+            }
+
+            @Override
+            public void onCancel(View view) {
+
             }
         });
     }
@@ -321,24 +330,22 @@ public class IdentityActivity extends AppCompatActivity {
         viewHolder.vehiclePlateNumberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 关闭软键盘
-                InputMethodController.CloseInputMethod(IdentityActivity.this);
-                // 先关闭抽屉
-                closeDrawer();
-                // 配置选择器
-                viewHolder.vehiclePlateSelectDrawer.selectSetting();
-                // 再打开抽屉
-                openDrawer();
+                showPopupWindow(v, viewHolder.vehiclePlateSelectList.loadSelect());
             }
         });
 
         // 设置选择结果回调
-        viewHolder.vehiclePlateSelectDrawer.setSelectFinishedListener(new DataChangeObserver<String>() {
+        viewHolder.vehiclePlateSelectList.setOnSelectedListener(new ISelectList
+                .OnSelectedListener<View, String>() {
             @Override
-            public void notifyDataChange(String data) {
-                viewHolder.vehiclePlateNumberButton.setText(data);
-                // 关闭抽屉
-                closeDrawer();
+            public void onFinish(String s) {
+                viewHolder.vehiclePlateNumberButton.setText(s);
+                viewHolder.popupWindow.dismiss();
+            }
+
+            @Override
+            public void onCancel(View view) {
+
             }
         });
     }
@@ -359,7 +366,7 @@ public class IdentityActivity extends AppCompatActivity {
             }
         });
 
-        pullIdentityInfo.beginExecute(MemoryValue.getMemoryValue().getUserID());
+        pullIdentityInfo.beginExecute(GlobalApplication.getLoginStatus().getUserID());
     }
 
     /**
@@ -439,7 +446,7 @@ public class IdentityActivity extends AppCompatActivity {
         String vehicleLength = viewHolder.vehicleLengthEditText.getText().toString().trim();
         String vehicleLoad = viewHolder.vehicleLoadEditText.getText().toString().trim();
 
-        if (!MemoryValue.getMemoryValue().isLogin()) {
+        if (!GlobalApplication.getLoginStatus().isLogin()) {
             Toast.makeText(this, R.string.no_login, Toast.LENGTH_SHORT).show();
             // 打开点击响应
             viewHolder.button.setEnabled(true);
@@ -472,8 +479,8 @@ public class IdentityActivity extends AppCompatActivity {
             }
         });
 
-        identityAuthenticate.beginExecute(MemoryValue.getMemoryValue().getUserID(), name, idCard,
-                vehiclePlate + vehiclePlateNumber, vehicleType, vehicleLength, vehicleLoad);
+        identityAuthenticate.beginExecute(GlobalApplication.getLoginStatus().getUserID(), name,
+                idCard, vehiclePlate + vehiclePlateNumber, vehicleType, vehicleLength, vehicleLoad);
     }
 
     /**
@@ -509,36 +516,6 @@ public class IdentityActivity extends AppCompatActivity {
     private void openCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivity(intent);
-    }
-
-    /**
-     * 打开导航抽屉
-     */
-    public void openDrawer() {
-        if (viewHolder.drawerLayout != null) {
-            viewHolder.drawerLayout.openDrawer(Gravity.RIGHT);
-        }
-    }
-
-    /**
-     * 关闭导航抽屉
-     */
-    public void closeDrawer() {
-        if (viewHolder.drawerLayout != null) {
-            viewHolder.drawerLayout.closeDrawer(Gravity.RIGHT);
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        // 如果抽屉已打开，则先关闭抽屉
-        if (viewHolder.drawerLayout != null && viewHolder.drawerLayout.isDrawerOpen(Gravity
-                .RIGHT)) {
-            closeDrawer();
-        } else {
-            super.onBackPressed();
-        }
     }
 
 }

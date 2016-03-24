@@ -3,9 +3,12 @@ package com.port.ocean.shipping.fragment;
  * Created by 超悟空 on 2015/7/2.
  */
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +16,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.port.ocean.shipping.R;
-import com.port.ocean.shipping.util.MemoryValue;
 import com.port.ocean.shipping.work.PublishEmptyCar;
 
+import org.mobile.library.common.function.CitySelectList;
 import org.mobile.library.common.function.InputMethodController;
+import org.mobile.library.global.GlobalApplication;
+import org.mobile.library.model.function.ISelectList;
 import org.mobile.library.model.operate.EmptyParameterObserver;
 import org.mobile.library.model.work.WorkBack;
 
@@ -45,6 +51,27 @@ public class PublishEmptyCarFragment extends Fragment {
      * @since 1.0
      */
     private class ViewHolder {
+
+        /**
+         * 用于显示选择列表的窗口
+         */
+        public PopupWindow popupWindow = null;
+
+        /**
+         * 弹出窗口的内容布局
+         */
+        public CardView cardView = null;
+
+        /**
+         * 起始城市选择列表
+         */
+        public CitySelectList startCitySelectList = null;
+
+        /**
+         * 终点城市选择列表
+         */
+        public CitySelectList endCitySelectList = null;
+
         /**
          * 查找按钮
          */
@@ -87,70 +114,59 @@ public class PublishEmptyCarFragment extends Fragment {
     private ViewHolder viewHolder = new ViewHolder();
 
     /**
-     * 设置输入框点击事件监听
-     *
-     * @param editClickObserver 监听器
-     */
-    public void setEditClickObserver(EmptyParameterObserver editClickObserver) {
-        this.editClickObserver = editClickObserver;
-    }
-
-    /**
      * 初始化选择输入框点击事件
      */
     private void initSelectEdit() {
+
+        viewHolder.startCitySelectList.setOnSelectedListener(new ISelectList
+                .OnSelectedListener<View, String>() {
+            @Override
+            public void onFinish(String s) {
+                if (s != null) {
+                    viewHolder.startEditText.setText(s);
+                }
+
+                viewHolder.popupWindow.dismiss();
+            }
+
+            @Override
+            public void onCancel(View view) {
+
+            }
+        });
+
+        viewHolder.endCitySelectList.setOnSelectedListener(new ISelectList
+                .OnSelectedListener<View, String>() {
+            @Override
+            public void onFinish(String s) {
+                if (s != null) {
+                    viewHolder.endEditText.setText(s);
+                }
+
+                viewHolder.popupWindow.dismiss();
+            }
+
+            @Override
+            public void onCancel(View view) {
+
+            }
+        });
+
         // 设置点击事件
         viewHolder.startEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentEdit = 1;
-                Log.i(LOG_TAG + "initSelectEdit", "start edit is clicked");
-                editClickObserver.invoke();
+                showPopupWindow(v, viewHolder.startCitySelectList.loadSelect());
             }
         });
 
         viewHolder.endEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentEdit = 2;
-                Log.i(LOG_TAG + "initSelectEdit", "end edit is clicked");
-                editClickObserver.invoke();
+                showPopupWindow(v, viewHolder.endCitySelectList.loadSelect());
+
             }
         });
-    }
-
-    /**
-     * 设置输入框显示值
-     *
-     * @param province 省
-     * @param city     市
-     * @param district 区
-     */
-    public void setEditValue(String province, String city, String district) {
-        String value = province;
-        if (city != null) {
-            value += "-" + city;
-        }
-
-        if (district != null) {
-            value += "-" + district;
-        }
-
-        Log.i(LOG_TAG + "setEditValue", "value is " + value);
-        Log.i(LOG_TAG + "setEditValue", "current edit is " + currentEdit);
-
-        switch (currentEdit) {
-            case 1:
-                // 始发地
-                viewHolder.startEditText.setText(value);
-                break;
-            case 2:
-                // 目的地
-                viewHolder.endEditText.setText(value);
-                break;
-            default:
-                break;
-        }
     }
 
     @Nullable
@@ -167,8 +183,10 @@ public class PublishEmptyCarFragment extends Fragment {
     private void initView(View rootView) {
         // 初始化控件集
         initViewHolder(rootView);
+        // 初始化弹出框
+        initPopupWindow();
         // 初始化按钮
-        initButton(rootView);
+        initButton();
         // 绑定选择输入框点击事件
         initSelectEdit();
     }
@@ -193,19 +211,54 @@ public class PublishEmptyCarFragment extends Fragment {
         // 优惠复选框
         viewHolder.favorableCheckBox = (CheckBox) rootView.findViewById(R.id
                 .fragment_publish_empty_car_favorable_checkBox);
+
+        viewHolder.startCitySelectList = new CitySelectList(getActivity());
+        viewHolder.endCitySelectList = new CitySelectList(getActivity());
+
+        // 弹出窗口布局
+        viewHolder.cardView = (CardView) LayoutInflater.from(getActivity()).inflate(R.layout
+                .layout_bottom_popup_window, null);
+        viewHolder.popupWindow = new PopupWindow(getActivity());
+    }
+
+    /**
+     * 初始化弹出框
+     */
+    private void initPopupWindow() {
+        viewHolder.popupWindow.setContentView(viewHolder.cardView);
+        viewHolder.popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        viewHolder.popupWindow.setHeight(getResources().getDimensionPixelOffset(R.dimen
+                .filter_popup_window_height));
+        viewHolder.popupWindow.setFocusable(true);
+        viewHolder.popupWindow.setOutsideTouchable(true);
+        viewHolder.popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    }
+
+    /**
+     * 显示PopupWindow
+     *
+     * @param anchor 依附的布局
+     * @param view   要显示的布局
+     */
+    private void showPopupWindow(View anchor, View view) {
+        if (!viewHolder.popupWindow.isShowing()) {
+            viewHolder.cardView.removeAllViews();
+            viewHolder.cardView.addView(view);
+            viewHolder.popupWindow.showAsDropDown(anchor);
+        }
     }
 
     /**
      * 初始化发布空车按钮
      */
-    private void initButton(final View rootView) {
+    private void initButton() {
 
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewHolder.button.setEnabled(false);
                 // 执行发布
-                onPublishCar(rootView);
+                onPublishCar();
             }
         });
     }
@@ -213,12 +266,12 @@ public class PublishEmptyCarFragment extends Fragment {
     /**
      * 发布空车
      */
-    private void onPublishCar(final View rootView) {
+    private void onPublishCar() {
 
         // 关闭软键盘
         InputMethodController.CloseInputMethod(getActivity());
 
-        if (!MemoryValue.getMemoryValue().isLogin()) {
+        if (!GlobalApplication.getLoginStatus().isLogin()) {
             Toast.makeText(getActivity(), R.string.no_login, Toast.LENGTH_SHORT).show();
             viewHolder.button.setEnabled(true);
             return;
@@ -259,8 +312,9 @@ public class PublishEmptyCarFragment extends Fragment {
             }
         });
 
-        publishEmptyCar.beginExecute(MemoryValue.getMemoryValue().getUserID(), start[0], start
-                .length > 1 ? start[1] : "", end[0], end.length > 1 ? end[1] : "", back, favorable);
+        publishEmptyCar.beginExecute(GlobalApplication.getLoginStatus().getUserID(), start[0],
+                start.length > 1 ? start[1] : "", end[0], end.length > 1 ? end[1] : "", back,
+                favorable);
     }
 
 }

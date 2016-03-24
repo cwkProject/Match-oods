@@ -98,11 +98,16 @@ public class CargoTypeSelectList implements ISelectList<View, String> {
 
             CargoTypeListFunction listFunction = (CargoTypeListFunction) baseDataListFunction;
 
-            List<String> dataList = new ArrayList<>(listFunction.getDataList());
+            List<String> dataList;
+
+            if (listFunction.getDataList() != null) {
+                dataList = new ArrayList<>(listFunction.getDataList());
+                dataList.add(0, context.getString(org.mobile.library.R.string.any));
+            } else {
+                dataList = new ArrayList<>();
+            }
 
             Log.i(LOG_TAG + "onCreateView", "dataList count is " + dataList.size());
-
-            dataList.add(0, context.getString(org.mobile.library.R.string.any));
 
             OnlyTextRecyclerViewAdapter adapter = new OnlyTextRecyclerViewAdapter(dataList);
 

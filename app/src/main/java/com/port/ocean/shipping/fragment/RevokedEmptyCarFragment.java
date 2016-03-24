@@ -15,9 +15,9 @@ import android.widget.Toast;
 
 import com.port.ocean.shipping.R;
 import com.port.ocean.shipping.data.EmptyCarStateData;
-import com.port.ocean.shipping.util.MemoryValue;
 import com.port.ocean.shipping.work.RevokedEmptyCar;
 
+import org.mobile.library.global.GlobalApplication;
 import org.mobile.library.model.work.WorkBack;
 
 /**
@@ -36,7 +36,8 @@ public class RevokedEmptyCarFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_revoked_empty_car, container, false);
 
         // 初始化布局
@@ -53,10 +54,14 @@ public class RevokedEmptyCarFragment extends Fragment {
      * @param rootView 根布局
      */
     private void initData(View rootView) {
-        TextView startTextView = (TextView) rootView.findViewById(R.id.fragment_revoked_empty_car_start_route_textView);
-        TextView endTextView = (TextView) rootView.findViewById(R.id.fragment_revoked_empty_car_end_route_textView);
-        TextView backTextView = (TextView) rootView.findViewById(R.id.fragment_revoked_empty_car_back_textView);
-        TextView favorableTextView = (TextView) rootView.findViewById(R.id.fragment_revoked_empty_car_rebate_textView);
+        TextView startTextView = (TextView) rootView.findViewById(R.id
+                .fragment_revoked_empty_car_start_route_textView);
+        TextView endTextView = (TextView) rootView.findViewById(R.id
+                .fragment_revoked_empty_car_end_route_textView);
+        TextView backTextView = (TextView) rootView.findViewById(R.id
+                .fragment_revoked_empty_car_back_textView);
+        TextView favorableTextView = (TextView) rootView.findViewById(R.id
+                .fragment_revoked_empty_car_rebate_textView);
 
         if (data != null) {
             String start = null;
@@ -83,11 +88,13 @@ public class RevokedEmptyCarFragment extends Fragment {
             endTextView.setText(end);
 
             if ("1".equals(data.getBack())) {
-                backTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.right_small_icon, 0);
+                backTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap
+                        .right_small_icon, 0);
             }
 
             if ("1".equals(data.getFavorable())) {
-                favorableTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.right_small_icon, 0);
+                favorableTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap
+                        .right_small_icon, 0);
             }
         }
     }
@@ -118,7 +125,8 @@ public class RevokedEmptyCarFragment extends Fragment {
      * @param rootView 根布局
      */
     private void initButton(final View rootView) {
-        final Button button = (Button) rootView.findViewById(R.id.fragment_revoked_empty_car_button);
+        final Button button = (Button) rootView.findViewById(R.id
+                .fragment_revoked_empty_car_button);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,12 +154,13 @@ public class RevokedEmptyCarFragment extends Fragment {
                     getActivity().finish();
                 }
 
-                Button button = (Button) rootView.findViewById(R.id.fragment_revoked_empty_car_button);
+                Button button = (Button) rootView.findViewById(R.id
+                        .fragment_revoked_empty_car_button);
 
                 button.setEnabled(true);
             }
         });
 
-        revokedEmptyCar.beginExecute(MemoryValue.getMemoryValue().getUserID());
+        revokedEmptyCar.beginExecute(GlobalApplication.getLoginStatus().getUserID());
     }
 }

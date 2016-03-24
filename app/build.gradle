@@ -7,8 +7,8 @@ android {
         applicationId "com.port.ocean.shipping"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 13
-        versionName "0.9.7"
+        versionCode 14
+        versionName "0.9.8"
     }
     buildTypes {
         release {
@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-    compile 'com.port:mobile-library:0.7.17'
+    compile 'com.port:mobile-library:0.7.18'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'

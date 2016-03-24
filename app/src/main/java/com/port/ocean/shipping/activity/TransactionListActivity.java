@@ -15,10 +15,10 @@ import android.widget.Toast;
 
 import com.port.ocean.shipping.R;
 import com.port.ocean.shipping.data.Transaction;
-import com.port.ocean.shipping.util.MemoryValue;
 import com.port.ocean.shipping.util.StaticValue;
 import com.port.ocean.shipping.work.PullTransaction;
 
+import org.mobile.library.global.GlobalApplication;
 import org.mobile.library.model.work.WorkBack;
 
 import java.util.ArrayList;
@@ -172,7 +172,8 @@ public class TransactionListActivity extends AppCompatActivity {
         if (transactionList != null && transactionList.size() > position) {
 
             Intent intent = new Intent(this, TransactionContentActivity.class);
-            intent.putExtra(StaticValue.IntentTag.TRANSACTION_CONTENT_TAG, transactionList.get(position));
+            intent.putExtra(StaticValue.IntentTag.TRANSACTION_CONTENT_TAG, transactionList.get
+                    (position));
             startActivity(intent);
         }
     }
@@ -211,7 +212,7 @@ public class TransactionListActivity extends AppCompatActivity {
      * 初始化数据
      */
     private void initData() {
-        if (!MemoryValue.getMemoryValue().isLogin()) {
+        if (!GlobalApplication.getLoginStatus().isLogin()) {
             Toast.makeText(this, R.string.no_login, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -227,7 +228,7 @@ public class TransactionListActivity extends AppCompatActivity {
             }
         });
 
-        pullTransaction.beginExecute(MemoryValue.getMemoryValue().getUserID());
+        pullTransaction.beginExecute(GlobalApplication.getLoginStatus().getUserID());
     }
 
     /**

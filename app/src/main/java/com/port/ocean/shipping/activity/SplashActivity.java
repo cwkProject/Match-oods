@@ -211,7 +211,7 @@ public class SplashActivity extends Activity {
      * 数据加载完毕跳转
      */
     private void jump() {
-        Log.i(LOG_TAG + "instantJump", "instantJump() is invoked");
+        Log.i(LOG_TAG + "jump", "jump is invoked");
 
         if (GlobalApplication.getLoginStatus().isLogin()) {
             // 已登录

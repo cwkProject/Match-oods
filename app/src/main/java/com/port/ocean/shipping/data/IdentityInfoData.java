@@ -153,7 +153,7 @@ public class IdentityInfoData extends JsonDataModel {
 
     @Override
     protected String onRequestMessage(boolean result, JSONObject handleResult) throws Exception {
-        return result ? handleResult.getString("Message") : null;
+        return !result ? handleResult.getString("Message") : null;
     }
 
     @Override

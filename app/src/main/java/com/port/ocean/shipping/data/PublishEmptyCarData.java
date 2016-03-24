@@ -96,7 +96,7 @@ public class PublishEmptyCarData extends JsonDataModel {
     @Override
     protected boolean onRequestResult(JSONObject handleResult) throws Exception {
         // 得到执行结果
-        String resultState = handleResult.getString("IsRelease");
+        String resultState = handleResult.getString("IsReg");
 
         return resultState != null && "yes".equals(resultState.trim().toLowerCase());
     }

@@ -3,11 +3,16 @@ package com.port.ocean.shipping.fragment;
  * Created by 超悟空 on 2015/6/23.
  */
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +25,11 @@ import android.widget.TextView;
 import com.port.ocean.shipping.R;
 import com.port.ocean.shipping.activity.IdentityActivity;
 import com.port.ocean.shipping.activity.LoginActivity;
-import com.port.ocean.shipping.data.IdentityInfoData;
-import com.port.ocean.shipping.util.MemoryValue;
-import com.port.ocean.shipping.work.PullIdentityInfo;
+import com.port.ocean.shipping.function.LoadUserInfo;
+import com.port.ocean.shipping.util.StaticValue;
+import com.port.ocean.shipping.util.UserInfo;
 
-import org.mobile.library.model.work.WorkBack;
+import org.mobile.library.global.GlobalApplication;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,14 +61,9 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     private static final String FUNCTION_IMAGE = "function_image";
 
     /**
-     * 列表使用的数据适配器
+     * 数据加载结果的广播接收者
      */
-    private SimpleAdapter adapter = null;
-
-    /**
-     * 数据适配器的元数据
-     */
-    private List<Map<String, Object>> adapterDataList = null;
+    private LoadingReceiver loadingReceiver = null;
 
     @Nullable
     @Override
@@ -71,11 +71,15 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
             savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_mine, container, false);
 
-
         // 初始化功能列表
         initListView(rootView);
         // 初始化退出登录按钮
         initExitButton(rootView);
+
+        // 广播接收者
+        loadingReceiver = new LoadingReceiver();
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(loadingReceiver,
+                loadingReceiver.getRegisterIntentFilter());
 
         return rootView;
     }
@@ -83,36 +87,32 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onResume() {
         super.onResume();
+
         // 初始化个人信息布局
-        initUserLayout(getView());
+        initUserLayout();
+    }
+
+    @Override
+    public void onDestroy() {
+
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(loadingReceiver);
+
+        super.onDestroy();
     }
 
     /**
      * 初始化个人信息布局
-     *
-     * @param rootView 根布局
      */
-    private void initUserLayout(View rootView) {
-        final TextView userTextView = (TextView) rootView.findViewById(R.id
+    private void initUserLayout() {
+        //noinspection ConstantConditions
+        final TextView userTextView = (TextView) getView().findViewById(R.id
                 .fragment_mine_user_textView);
 
-        if (MemoryValue.getMemoryValue().getUserName() != null) {
-            userTextView.setText(MemoryValue.getMemoryValue().getUserName());
+        if (UserInfo.getInstance().getRealName() != null) {
+            userTextView.setText(UserInfo.getInstance().getRealName());
         } else {
-            PullIdentityInfo pullIdentityInfo = new PullIdentityInfo();
-
-            pullIdentityInfo.setWorkEndListener(new WorkBack<IdentityInfoData>() {
-                @Override
-                public void doEndWork(boolean state, IdentityInfoData data) {
-                    if (state) {
-                        // 填充数据
-                        MemoryValue.getMemoryValue().setUserName(data.getUserName());
-                        userTextView.setText(MemoryValue.getMemoryValue().getUserName());
-                    }
-                }
-            });
-
-            pullIdentityInfo.beginExecute(MemoryValue.getMemoryValue().getUserID());
+            // 加载用户数据
+            LoadUserInfo.onLoadUserInfo();
         }
     }
 
@@ -127,7 +127,7 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
         ListView listView = (ListView) rootView.findViewById(R.id.fragment_mine_list_view);
 
         // 列表使用的数据适配器
-        adapter = new SimpleAdapter(getActivity(), getFunctionTitle(), R.layout
+        SimpleAdapter adapter = new SimpleAdapter(getActivity(), getFunctionTitle(), R.layout
                 .mine_function_item, new String[]{FUNCTION_TITLE , FUNCTION_IMAGE}, new int[]{R.id.mine_function_item_textView , R.id.mine_function_item_imageView});
 
         // 设置适配器
@@ -164,6 +164,9 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
             // 将标签加入数据源
             dataList.add(function);
         }
+
+        images.recycle();
+
         return dataList;
     }
 
@@ -199,10 +202,9 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 清空登录状态
-                //MemoryValue.getMemoryValue().Reset();
                 // 清空保存记录
-                //GlobalApplication.getApplicationConfig().Clear();
+                GlobalApplication.getApplicationConfig().setPassword(null);
+                GlobalApplication.getApplicationConfig().Save();
 
                 // 跳转到登录界面
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -210,5 +212,42 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
                 getActivity().finish();
             }
         });
+    }
+
+    /**
+     * 数据加载结果的广播接收者
+     *
+     * @author 超悟空
+     * @version 1.0 2016/3/24
+     * @since 1.0
+     */
+    private class LoadingReceiver extends BroadcastReceiver {
+
+        /**
+         * 得到本接收者监听的动作集合
+         *
+         * @return 填充完毕的意图集合
+         */
+        public final IntentFilter getRegisterIntentFilter() {
+            // 新建动作集合
+            IntentFilter filter = new IntentFilter();
+
+            // 数据加载
+            filter.addAction(StaticValue.BroadcastAction.USER_INFO_CHANGE_TAG);
+            return filter;
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // 得到动作字符串
+            String actionString = intent.getAction();
+            Log.i(LOG_TAG + "LoadingReceiver.onReceive", "action is " + actionString);
+
+            switch (actionString) {
+                case StaticValue.BroadcastAction.USER_INFO_CHANGE_TAG:
+                    initUserLayout();
+                    break;
+            }
+        }
     }
 }

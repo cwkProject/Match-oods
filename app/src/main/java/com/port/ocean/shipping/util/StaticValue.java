@@ -95,12 +95,22 @@ public interface StaticValue {
          * 获取车型列表的请求地址
          */
         String VEHICLE_TYPE_URL = "http://218.92.115.55/M_Sph/Base/GetVehicleType.aspx";
+
+        /**
+         * 获取车辆放行信息请求地址
+         */
+        String VEHICLE_PASSED_URL = "http://218.92.115.55/M_Sph/Vehicle/GetVehiclePassed.aspx";
     }
 
     /**
-     * 登录请求地址
+     * 广播事件
      */
-    String LOGIN_URL = "http://218.92.115.55/M_Sph/Login.aspx";
+    interface BroadcastAction {
+        /**
+         * 用户信息变更
+         */
+        String USER_INFO_CHANGE_TAG = "user_info_change_tag";
+    }
 
     /**
      * 获取服务器设备ID
@@ -136,11 +146,6 @@ public interface StaticValue {
      * 网上车源页面地址
      */
     String CAR_FIELD = "http://218.92.115.55/M_Sph/Vehicle/OnlineVehicles.html";
-
-    /**
-     * 注册请求地址
-     */
-    String REGISTER_URL = "http://218.92.115.55/M_Sph/Register.aspx";
 
     /**
      * 查看司机当前交易的地址

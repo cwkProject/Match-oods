@@ -7,6 +7,8 @@ package com.port.ocean.shipping.activity;
 import android.content.Intent;
 import android.view.View;
 
+import com.port.ocean.shipping.function.LoadUserInfo;
+
 import org.mobile.library.model.activity.BaseLoginActivity;
 
 /**
@@ -27,6 +29,8 @@ public class LoginActivity extends BaseLoginActivity {
      * 跳转到主界面
      */
     private void goMain() {
+        // 加载用户数据
+        LoadUserInfo.onLoadUserInfo();
         Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
         finish();

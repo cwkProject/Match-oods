@@ -6,7 +6,9 @@ package com.port.ocean.shipping.work;
 import com.port.ocean.shipping.data.IdentityInfoData;
 import com.port.ocean.shipping.util.StaticValue;
 
+import org.mobile.library.global.GlobalApplication;
 import org.mobile.library.model.work.DefaultWorkModel;
+import org.mobile.library.util.BroadcastUtil;
 
 /**
  * 获取身份信息任务
@@ -38,5 +40,11 @@ public class PullIdentityInfo extends DefaultWorkModel<String, IdentityInfoData,
         data.setAccount(parameters[0]);
 
         return data;
+    }
+
+    @Override
+    protected void onFinish() {
+        BroadcastUtil.sendBroadcast(GlobalApplication.getGlobal(), StaticValue.BroadcastAction
+                .USER_INFO_CHANGE_TAG);
     }
 }
