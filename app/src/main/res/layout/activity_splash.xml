@@ -5,32 +5,4 @@
               android:background="@color/transparent"
               android:orientation="vertical">
 
-    <!-- <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginLeft="5dp"
-         android:layout_marginTop="5dp"
-         android:src="@mipmap/splash_1"/>
-
-     <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_gravity="center_horizontal"
-         android:layout_marginTop="50dp"
-         android:src="@mipmap/splash_2"/>
-
-     <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_gravity="center"
-         android:layout_marginTop="10dp"
-         android:src="@mipmap/splash_3"/>
-
-     <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_gravity="center_horizontal"
-         android:layout_marginTop="10dp"
-         android:src="@mipmap/splash_4"/> -->
-
 </LinearLayout>

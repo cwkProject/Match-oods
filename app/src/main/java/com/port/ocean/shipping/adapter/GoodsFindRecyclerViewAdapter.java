@@ -48,7 +48,7 @@ public class GoodsFindRecyclerViewAdapter extends RecyclerView.Adapter<GoodsFind
      * 空构造函数
      */
     public GoodsFindRecyclerViewAdapter() {
-        goodsList = new ArrayList<>();
+        this(null);
     }
 
     /**
@@ -58,6 +58,10 @@ public class GoodsFindRecyclerViewAdapter extends RecyclerView.Adapter<GoodsFind
      */
     public GoodsFindRecyclerViewAdapter(List<Goods> goodsList) {
         this.goodsList = goodsList;
+
+        if (this.goodsList == null) {
+            this.goodsList = new ArrayList<>();
+        }
     }
 
     /**

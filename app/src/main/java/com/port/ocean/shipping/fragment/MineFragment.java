@@ -14,10 +14,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -25,7 +27,6 @@ import android.widget.TextView;
 import com.port.ocean.shipping.R;
 import com.port.ocean.shipping.activity.IdentityActivity;
 import com.port.ocean.shipping.activity.LoginActivity;
-import com.port.ocean.shipping.function.LoadUserInfo;
 import com.port.ocean.shipping.util.StaticValue;
 import com.port.ocean.shipping.util.UserInfo;
 
@@ -61,25 +62,46 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     private static final String FUNCTION_IMAGE = "function_image";
 
     /**
-     * 数据加载结果的广播接收者
+     * 控件管理器
      */
-    private LoadingReceiver loadingReceiver = null;
+    private class ViewHolder {
+        /**
+         * 用户姓名文本框
+         */
+        public TextView userTextView = null;
+
+        /**
+         * 数据加载结果的广播接收者
+         */
+        public LoadingReceiver loadingReceiver = null;
+
+        /**
+         * 功能列表
+         */
+        public ListView listView = null;
+    }
+
+    /**
+     * 控件工具
+     */
+    private ViewHolder viewHolder = new ViewHolder();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
             savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_mine, container, false);
+        // 开启追加菜单项
+        setHasOptionsMenu(true);
+        // 初始化控件引用
+        initView(rootView);
 
         // 初始化功能列表
-        initListView(rootView);
-        // 初始化退出登录按钮
-        initExitButton(rootView);
+        initListView();
 
-        // 广播接收者
-        loadingReceiver = new LoadingReceiver();
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(loadingReceiver,
-                loadingReceiver.getRegisterIntentFilter());
+        // 注册广播
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(viewHolder
+                .loadingReceiver, viewHolder.loadingReceiver.getRegisterIntentFilter());
 
         return rootView;
     }
@@ -95,46 +117,47 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onDestroy() {
 
-        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(loadingReceiver);
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(viewHolder
+                .loadingReceiver);
 
         super.onDestroy();
+    }
+
+    /**
+     * 初始化控件引用
+     *
+     * @param rootView 根布局
+     */
+    private void initView(View rootView) {
+        viewHolder.loadingReceiver = new LoadingReceiver();
+        viewHolder.userTextView = (TextView) rootView.findViewById(R.id
+                .fragment_mine_user_textView);
+        viewHolder.listView = (ListView) rootView.findViewById(R.id.fragment_mine_list_view);
     }
 
     /**
      * 初始化个人信息布局
      */
     private void initUserLayout() {
-        //noinspection ConstantConditions
-        final TextView userTextView = (TextView) getView().findViewById(R.id
-                .fragment_mine_user_textView);
-
-        if (UserInfo.getInstance().getRealName() != null) {
-            userTextView.setText(UserInfo.getInstance().getRealName());
-        } else {
-            // 加载用户数据
-            LoadUserInfo.onLoadUserInfo();
+        if (UserInfo.getInstance().getRealName() != null && viewHolder.userTextView != null) {
+            viewHolder.userTextView.setText(UserInfo.getInstance().getRealName());
         }
     }
 
     /**
      * 初始化功能表格布局
-     *
-     * @param rootView 根布局
      */
-    private void initListView(View rootView) {
-
-        // 片段中的列表布局
-        ListView listView = (ListView) rootView.findViewById(R.id.fragment_mine_list_view);
+    private void initListView() {
 
         // 列表使用的数据适配器
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), getFunctionTitle(), R.layout
                 .mine_function_item, new String[]{FUNCTION_TITLE , FUNCTION_IMAGE}, new int[]{R.id.mine_function_item_textView , R.id.mine_function_item_imageView});
 
         // 设置适配器
-        listView.setAdapter(adapter);
+        viewHolder.listView.setAdapter(adapter);
 
         // 设置监听器
-        listView.setOnItemClickListener(this);
+        viewHolder.listView.setOnItemClickListener(this);
     }
 
     /**
@@ -191,27 +214,36 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     /**
-     * 初始化退出登录按钮
-     *
-     * @param rootView 根布局
+     * 退出登录
      */
-    private void initExitButton(View rootView) {
-        // 退出按钮
-        Button button = (Button) rootView.findViewById(R.id.fragment_mine_exit_button);
+    private void logout() {
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 清空保存记录
-                GlobalApplication.getApplicationConfig().setPassword(null);
-                GlobalApplication.getApplicationConfig().Save();
+        // 清空保存记录
+        GlobalApplication.getApplicationConfig().setPassword(null);
+        GlobalApplication.getApplicationConfig().Save();
 
-                // 跳转到登录界面
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
+        // 跳转到登录界面
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_mine, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.menu_mine_logout:
+                // 退出登录
+                logout();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     /**

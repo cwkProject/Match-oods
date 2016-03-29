@@ -16,10 +16,10 @@ import android.view.ViewGroup;
 
 import com.port.ocean.shipping.R;
 import com.port.ocean.shipping.activity.CarFieldActivity;
-import com.port.ocean.shipping.activity.GoodsSupplyFindActivity;
 import com.port.ocean.shipping.activity.LoginActivity;
 import com.port.ocean.shipping.activity.PublishEmptyCarActivity;
 import com.port.ocean.shipping.activity.TransactionListActivity;
+import com.port.ocean.shipping.activity.VehiclePassedActivity;
 import com.port.ocean.shipping.adapter.ExploreFunctionItemViewHolder;
 import com.port.ocean.shipping.adapter.ExploreFunctionRecyclerViewAdapter;
 import com.port.ocean.shipping.bean.FunctionItem;
@@ -38,11 +38,6 @@ import java.util.List;
  * @since 1.0
  */
 public class ExploreFragment extends Fragment {
-
-    /**
-     * 日志标签前缀
-     */
-    private static final String LOG_TAG = "ExploreFragment.";
 
     @Nullable
     @Override
@@ -138,23 +133,30 @@ public class ExploreFragment extends Fragment {
             return;
         }
 
+        // 跳转意图
+        Intent function = null;
+
         switch (position) {
             case 0:
-                // 查询货源
-                startActivity(new Intent(getActivity(), GoodsSupplyFindActivity.class));
+                // 放行信息
+                function = new Intent(getActivity(), VehiclePassedActivity.class);
                 break;
             case 1:
                 // 发布空车
-                startActivity(new Intent(getActivity(), PublishEmptyCarActivity.class));
+                function = new Intent(getActivity(), PublishEmptyCarActivity.class);
                 break;
             case 2:
                 // 我的交易
-                startActivity(new Intent(getActivity(), TransactionListActivity.class));
+                function = new Intent(getActivity(), TransactionListActivity.class);
                 break;
             case 3:
                 // 网上车源
-                startActivity(new Intent(getActivity(), CarFieldActivity.class));
+                function = new Intent(getActivity(), CarFieldActivity.class);
                 break;
+        }
+
+        if (function != null) {
+            startActivity(function);
         }
     }
 }

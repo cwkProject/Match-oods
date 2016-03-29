@@ -27,7 +27,7 @@
     </array>
 
     <string-array name="grid_item_function_name_list">
-        <item>@string/title_goods_find</item>
+        <item>@string/title_vehicle_passed</item>
         <item>@string/title_publish_empty_car</item>
         <item>@string/title_my_transaction</item>
         <item>@string/title_car_field</item>

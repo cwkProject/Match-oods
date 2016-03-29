@@ -63,6 +63,9 @@
         <activity
             android:name=".activity.GoodsSupplyContentActivity"
             android:windowSoftInputMode="adjustUnspecified|stateAlwaysHidden"/>
+        <activity
+            android:name=".activity.VehiclePassedActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateAlwaysHidden"/>
 
     </application>
 

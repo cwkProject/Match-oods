@@ -7,8 +7,8 @@ android {
         applicationId "com.port.ocean.shipping"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 14
-        versionName "0.9.8"
+        versionCode 15
+        versionName "0.9.9"
     }
     buildTypes {
         release {
@@ -25,9 +25,9 @@ android {
 }
 
 dependencies {
-    compile 'com.port:mobile-library:0.7.18'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.android.support:cardview-v7:23.1.1'
+    compile 'com.port:mobile-library:0.7.20'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:recyclerview-v7:23.2.1'
+    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:cardview-v7:23.2.1'
 }

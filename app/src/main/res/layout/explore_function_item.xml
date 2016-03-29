@@ -25,12 +25,4 @@
         android:text="功能名"
         android:textSize="@dimen/text_view_default_text_size"/>
 
-    <!-- <TextView
-         android:id="@+id/mine_function_item_textView_right"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginRight="30dp"
-         android:gravity="center_vertical"
-         android:text="备注"/>
- -->
 </LinearLayout>

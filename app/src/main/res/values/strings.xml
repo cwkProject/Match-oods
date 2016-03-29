@@ -6,10 +6,13 @@
     <string name="fragment_rationing_button">找  货</string>
 
     <string name="search_title">搜索</string>
+    <string name="search_hint">输入查询关键字</string>
 
     <string name="title_app_name">速配货</string>
     <string name="title_register">注册</string>
     <string name="title_login">登录</string>
+    <string name="title_logout">退出</string>
+    <string name="title_vehicle_passed">放行信息</string>
 
     <string name="title_identity_authentication">实名认证</string>
     <string name="title_my_wallet">我的钱包</string>
@@ -122,5 +125,7 @@
     <string name="models_label_text">要求车型</string>
     <string name="vehicle_length_label_text">要求车长</string>
     <string name="publish_time_label_text">发布时间</string>
+    <string name="location_label_text">作业公司</string>
+    <string name="storage_label_text">场地</string>
 
 </resources>

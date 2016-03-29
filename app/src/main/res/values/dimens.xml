@@ -84,4 +84,5 @@
     <dimen name="mine_function_text_margin_left">30dp</dimen>
 
     <dimen name="goods_supply_find_layout_spacing">56dp</dimen>
+
 </resources>

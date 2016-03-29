@@ -12,6 +12,7 @@ import com.port.ocean.shipping.R;
 
 import org.mobile.library.model.operate.OnItemClickListenerForRecyclerViewItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +39,7 @@ public class OnlyTextRecyclerViewAdapter extends RecyclerView.Adapter<OnlyTextIt
      * 构造函数
      */
     public OnlyTextRecyclerViewAdapter() {
+        this(null);
     }
 
     /**
@@ -47,6 +49,10 @@ public class OnlyTextRecyclerViewAdapter extends RecyclerView.Adapter<OnlyTextIt
      */
     public OnlyTextRecyclerViewAdapter(List<String> dataList) {
         this.dataList = dataList;
+
+        if (this.dataList == null) {
+            this.dataList = new ArrayList<>();
+        }
     }
 
     /**

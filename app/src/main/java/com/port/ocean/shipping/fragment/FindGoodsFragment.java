@@ -25,7 +25,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
@@ -430,13 +429,13 @@ public class FindGoodsFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_find_goods, menu);
+        inflater.inflate(R.menu.menu_with_search, menu);
 
         // 获取SearchView对象
         final SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 
         if (searchView != null) {
-            //searchView.setSubmitButtonEnabled(true);
+            searchView.setQueryHint(getString(R.string.search_hint));
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
@@ -463,22 +462,6 @@ public class FindGoodsFragment extends Fragment {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.menu_search:
-                // 查询按钮
-                Log.i(LOG_TAG + "onOptionsItemSelected", "click menu_search");
-
-                break;
-            default:
-                super.onOptionsItemSelected(item);
-        }
-
-        return true;
-    }
-
     /**
      * 执行搜索按钮
      *
@@ -487,5 +470,14 @@ public class FindGoodsFragment extends Fragment {
     private void searchButtonClick(String query) {
         viewHolder.query = query;
         initData();
+    }
+
+    @Override
+    public void onDestroy() {
+        // 中断上次请求
+        if (viewHolder.beforeLoadWork != null) {
+            viewHolder.beforeLoadWork.cancel();
+        }
+        super.onDestroy();
     }
 }
