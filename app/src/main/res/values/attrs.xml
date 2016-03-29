@@ -2,6 +2,7 @@
 <resources>
     <string-array name="mine_function_title">
         <item>@string/title_identity_authentication</item>
+        <item>@string/title_vehicle_management</item>
         <item>@string/title_my_wallet</item>
         <item>@string/title_feedback</item>
         <item>@string/title_about</item>
@@ -10,6 +11,7 @@
 
     <array name="mine_function_image">
         <item>@mipmap/authentication_large_icon</item>
+        <item>@mipmap/car_large_icon</item>
         <item>@mipmap/wallet_large_icon</item>
         <item>@mipmap/feedback_large_icon</item>
         <item>@mipmap/about_large_icon</item>
