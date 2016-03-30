@@ -75,7 +75,7 @@ public class CarFieldActivity extends AppCompatActivity {
 
         MobileWebViewFactory.assemblingWebView(this, webView);
 
-        webView.loadUrl(StaticValue.CAR_FIELD);
+        webView.loadUrl(StaticValue.Url.CAR_FIELD);
     }
 }
 

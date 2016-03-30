@@ -43,12 +43,6 @@
             android:name=".activity.IdentityActivity"
             android:windowSoftInputMode="adjustUnspecified|stateAlwaysHidden"/>
         <activity
-            android:name=".activity.GoodsSupplyFindResultListActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateAlwaysHidden"/>
-        <activity
-            android:name=".activity.GoodsSupplyFindActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateAlwaysHidden"/>
-        <activity
             android:name=".activity.PublishEmptyCarActivity"
             android:windowSoftInputMode="adjustUnspecified|stateAlwaysHidden"/>
         <activity
@@ -66,6 +60,9 @@
         <activity
             android:name=".activity.VehiclePassedActivity"
             android:windowSoftInputMode="adjustUnspecified|stateAlwaysHidden"/>
+        <activity android:name=".activity.VehicleManagementActivity"/>
+        <activity android:name=".activity.AddVehicleActivity"/>
+        <activity android:name=".activity.EditVehicleActivity"/>
 
     </application>
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/layout_default_horizontal_padding"
+        android:layout_marginRight="@dimen/layout_default_horizontal_padding"
+        android:layout_marginTop="@dimen/layout_toolbar_top_margin"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/layout_default_spacing"
+            android:text="@string/text_license_plate_number"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/activity_vehicle_add_license_plate_button"
+            android:layout_width="@dimen/layout_default_mini_height"
+            android:layout_height="@dimen/layout_default_mini_height"
+            android:text="京"/>
+
+        <EditText
+            android:id="@+id/activity_vehicle_add_license_plate_number_editText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_default_mini_height"
+            android:digits="0123456789ABCDEFGHIGKLMNOPQRSTUVWXYZ"
+            android:hint="@string/edit_hint_license_plate_number"
+            android:inputType="number|textCapCharacters"
+            android:maxLength="6"
+            android:paddingLeft="@dimen/layout_default_spacing"
+            android:singleLine="true"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/activity_vehicle_add_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_default_large_height"
+        android:layout_marginLeft="@dimen/layout_default_horizontal_padding"
+        android:layout_marginRight="@dimen/layout_default_horizontal_padding"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/text_save"/>
+
+</LinearLayout>

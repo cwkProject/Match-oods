@@ -180,7 +180,7 @@ public class IdentityActivity extends AppCompatActivity {
     private void initViewHolder() {
         // 弹出窗口布局
         viewHolder.cardView = (CardView) LayoutInflater.from(this).inflate(R.layout
-                .layout_bottom_popup_window, null);
+                .layout_popup_window, null);
         viewHolder.popupWindow = new PopupWindow(this);
 
         // 车长选择工具

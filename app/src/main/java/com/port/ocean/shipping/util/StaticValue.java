@@ -42,34 +42,9 @@ public interface StaticValue {
      */
     interface IntentTag {
         /**
-         * 始发地省标签
+         * 车辆详情取值标签
          */
-        String START_PROVINCE_TAG = "start_province_tag";
-
-        /**
-         * 始发地市标签
-         */
-        String START_CITY_TAG = "start_city_tag";
-
-        /**
-         * 始发地区标签
-         */
-        String START_DISTRICT_TAG = "start_district_tag";
-
-        /**
-         * 目的地省标签
-         */
-        String END_PROVINCE_TAG = "end_province_tag";
-
-        /**
-         * 目的地市标签
-         */
-        String END_CITY_TAG = "end_city_tag";
-
-        /**
-         * 目的地区标签
-         */
-        String END_DISTRICT_TAG = "end_district_tag";
+        String VEHICLE_DETAIL_TAG = "vehicle_detail_tag";
 
         /**
          * 交易详情取值标签
@@ -100,6 +75,61 @@ public interface StaticValue {
          * 获取车辆放行信息请求地址
          */
         String VEHICLE_PASSED_URL = "http://218.92.115.55/M_Sph/Vehicle/GetVehiclePassed.aspx";
+
+        /**
+         * 获取服务器设备ID
+         */
+        String GET_DEVICE_ID_URL = "http://218.92.115.55/MobilePlatform/Device/GetDevice.aspx";
+
+        /**
+         * 设置服务器设备ID
+         */
+        String SET_DEVICE_ID_URL = "http://218.92.115.55/MobilePlatform/Device/AddDevice.aspx";
+
+        /**
+         * 获取发布中空车状态地址
+         */
+        String EMPTY_CAR_STATE = "http://218.92.115.55/M_Sph/Vehicle/GetVehicleReleasing.aspx";
+
+        /**
+         * 撤销发布空车的请求地址
+         */
+        String REVOKED_EMPTY_CAR = "http://218.92.115.55/M_Sph/Vehicle/RepealVehicle.aspx";
+
+        /**
+         * 付款地址
+         */
+        String PAYMENT_URL = "http://218.92.115.55/M_Sph/Deal/DealForDriver.aspx";
+
+        /**
+         * 网上车源页面地址
+         */
+        String CAR_FIELD = "http://218.92.115.55/M_Sph/Vehicle/OnlineVehicles.html";
+
+        /**
+         * 查看司机当前交易的地址
+         */
+        String CURRENT_TRANSACTION_URL = "http://218.92.115.55/M_Sph/Deal/DealInfoForDriver.aspx";
+
+        /**
+         * 发布空车的请求地址
+         */
+        String PUBLISH_EMPTY_CAR_URL = "http://218.92.115.55/M_Sph/Vehicle/ReleaseVehicle.aspx";
+
+        /**
+         * 查找货源
+         */
+        String FIND_GOODS_URL = "http://218.92.115.55/M_Sph/Goods/FindGoods2.aspx";
+
+        /**
+         * 司机身份认证地址
+         */
+        String IDENTITY_URL = "http://218.92.115.55/M_Sph/Auth/AuthForDriver.aspx";
+
+        /**
+         * 司机身份信息获取地址
+         */
+        String IDENTITY_INFO_URL = "http://218.92.115.55/M_Sph/UserInfo/InfoForDriver.aspx";
     }
 
     /**
@@ -111,64 +141,4 @@ public interface StaticValue {
          */
         String USER_INFO_CHANGE_TAG = "user_info_change_tag";
     }
-
-    /**
-     * 获取服务器设备ID
-     */
-    String GET_DEVICE_ID_URL = "http://218.92.115.55/MobilePlatform/Device/GetDevice.aspx";
-
-    /**
-     * 设置服务器设备ID
-     */
-    String SET_DEVICE_ID_URL = "http://218.92.115.55/MobilePlatform/Device/AddDevice.aspx";
-
-    /**
-     * 获取发布中空车状态地址
-     */
-    String EMPTY_CAR_STATE = "http://218.92.115.55/M_Sph/Vehicle/GetVehicleReleasing.aspx";
-
-    /**
-     * 撤销发布空车的请求地址
-     */
-    String REVOKED_EMPTY_CAR = "http://218.92.115.55/M_Sph/Vehicle/RepealVehicle.aspx";
-
-    /**
-     * 付款地址
-     */
-    String PAYMENT_URL = "http://218.92.115.55/M_Sph/Deal/DealForDriver.aspx";
-
-    /**
-     * 首页广告页面地址
-     */
-    String MAIN_ADVERTISING = "http://218.92.115.55/M_Sph//Page/Advertisement.html";
-
-    /**
-     * 网上车源页面地址
-     */
-    String CAR_FIELD = "http://218.92.115.55/M_Sph/Vehicle/OnlineVehicles.html";
-
-    /**
-     * 查看司机当前交易的地址
-     */
-    String CURRENT_TRANSACTION_URL = "http://218.92.115.55/M_Sph/Deal/DealInfoForDriver.aspx";
-
-    /**
-     * 发布空车的请求地址
-     */
-    String PUBLISH_EMPTY_CAR_URL = "http://218.92.115.55/M_Sph/Vehicle/ReleaseVehicle.aspx";
-
-    /**
-     * 查找货源
-     */
-    String FIND_GOODS_URL = "http://218.92.115.55/M_Sph/Goods/FindGoods2.aspx";
-
-    /**
-     * 司机身份认证地址
-     */
-    String IDENTITY_URL = "http://218.92.115.55/M_Sph/Auth/AuthForDriver.aspx";
-
-    /**
-     * 司机身份信息获取地址
-     */
-    String IDENTITY_INFO_URL = "http://218.92.115.55/M_Sph/UserInfo/InfoForDriver.aspx";
 }

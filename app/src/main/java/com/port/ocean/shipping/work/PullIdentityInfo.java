@@ -26,7 +26,7 @@ public class PullIdentityInfo extends DefaultWorkModel<String, IdentityInfoData,
 
     @Override
     protected String onTaskUri() {
-        return StaticValue.IDENTITY_INFO_URL;
+        return StaticValue.Url.IDENTITY_INFO_URL;
     }
 
     @Override

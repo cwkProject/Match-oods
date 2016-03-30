@@ -26,7 +26,7 @@ public class PublishEmptyCar extends DefaultWorkModel<String, String, PublishEmp
 
     @Override
     protected String onTaskUri() {
-        return StaticValue.PUBLISH_EMPTY_CAR_URL;
+        return StaticValue.Url.PUBLISH_EMPTY_CAR_URL;
     }
 
     @Override

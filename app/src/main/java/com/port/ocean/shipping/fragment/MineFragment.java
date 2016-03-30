@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.port.ocean.shipping.R;
 import com.port.ocean.shipping.activity.IdentityActivity;
 import com.port.ocean.shipping.activity.LoginActivity;
+import com.port.ocean.shipping.activity.VehicleManagementActivity;
 import com.port.ocean.shipping.util.StaticValue;
 import com.port.ocean.shipping.util.UserInfo;
 
@@ -200,9 +201,20 @@ public class MineFragment extends Fragment implements AdapterView.OnItemClickLis
                 // 身份认证
                 identity();
                 break;
+            case 1:
+                // 我的货车
+                vehicle();
             default:
                 break;
         }
+    }
+
+    /**
+     * 车牌
+     */
+    private void vehicle() {
+        Intent intent = new Intent(getActivity(), VehicleManagementActivity.class);
+        startActivity(intent);
     }
 
     /**

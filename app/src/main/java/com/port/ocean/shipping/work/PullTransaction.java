@@ -27,7 +27,7 @@ public class PullTransaction extends DefaultWorkModel<String, List<Transaction>,
 
     @Override
     protected String onTaskUri() {
-        return StaticValue.CURRENT_TRANSACTION_URL;
+        return StaticValue.Url.CURRENT_TRANSACTION_URL;
     }
 
     @Override

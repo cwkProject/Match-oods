@@ -23,7 +23,7 @@ public class GetDeviceId extends DefaultWorkModel<String, String, GetDeviceIdDat
 
     @Override
     protected String onTaskUri() {
-        return StaticValue.GET_DEVICE_ID_URL;
+        return StaticValue.Url.GET_DEVICE_ID_URL;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class GetDeviceId extends DefaultWorkModel<String, String, GetDeviceIdDat
     protected GetDeviceIdData onCreateDataModel(String... parameters) {
         GetDeviceIdData getDeviceIdData = new GetDeviceIdData();
         getDeviceIdData.setUserId(parameters[0]);
-//        getDeviceIdData.setDeviceType(ApplicationStaticValue.DEVICE_TYPE);
+        //        getDeviceIdData.setDeviceType(ApplicationStaticValue.DEVICE_TYPE);
         getDeviceIdData.setAppCode(StaticValue.APP_CODE);
         return getDeviceIdData;
     }

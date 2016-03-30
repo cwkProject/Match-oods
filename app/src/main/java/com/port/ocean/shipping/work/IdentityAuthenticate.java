@@ -27,7 +27,7 @@ public class IdentityAuthenticate extends DefaultWorkModel<String, String, Ident
 
     @Override
     protected String onTaskUri() {
-        return StaticValue.IDENTITY_URL;
+        return StaticValue.Url.IDENTITY_URL;
     }
 
     @Override

@@ -31,6 +31,8 @@
     <string name="title_goods_content">货源详情</string>
 
     <string name="title_order_form">我的订单</string>
+    <string name="title_add_vehicle">新增车辆</string>
+    <string name="title_vehicle_detail">车辆详情</string>
 
     <string name="view_pager_title_main">找货</string>
     <string name="view_pager_title_message">功能</string>
@@ -128,5 +130,8 @@
     <string name="publish_time_label_text">发布时间</string>
     <string name="location_label_text">作业公司</string>
     <string name="storage_label_text">场地</string>
+
+    <string name="text_save">保存</string>
+    <string name="text_delete">删除</string>
 
 </resources>

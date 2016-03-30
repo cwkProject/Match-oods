@@ -5,6 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_item_height"
+    android:layout_marginTop="2dp"
+    android:foreground="?selectableItemBackground"
     app:cardBackgroundColor="?colorPrimary"
     app:cardElevation="2dp"
     app:cardPreventCornerOverlap="true"

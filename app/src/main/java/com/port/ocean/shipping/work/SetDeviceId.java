@@ -23,7 +23,7 @@ public class SetDeviceId extends DefaultWorkModel<String, String, SetDeviceIdDat
 
     @Override
     protected String onTaskUri() {
-        return StaticValue.SET_DEVICE_ID_URL;
+        return StaticValue.Url.SET_DEVICE_ID_URL;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class SetDeviceId extends DefaultWorkModel<String, String, SetDeviceIdDat
         SetDeviceIdData setDeviceIdData = new SetDeviceIdData();
         setDeviceIdData.setUserId(parameters[0]);
         setDeviceIdData.setDeviceId(parameters[1]);
-//        setDeviceIdData.setDeviceType(ApplicationStaticValue.DEVICE_TYPE);
+        //        setDeviceIdData.setDeviceType(ApplicationStaticValue.DEVICE_TYPE);
         setDeviceIdData.setAppCode(StaticValue.APP_CODE);
         return setDeviceIdData;
     }

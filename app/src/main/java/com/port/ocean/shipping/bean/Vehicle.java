@@ -3,6 +3,9 @@ package com.port.ocean.shipping.bean;
  * Created by 超悟空 on 2016/3/29.
  */
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * 车辆信息数据模型
  *
@@ -10,7 +13,7 @@ package com.port.ocean.shipping.bean;
  * @version 1.0 2016/3/29
  * @since 1.0
  */
-public class Vehicle {
+public class Vehicle implements Parcelable {
 
     /**
      * 车辆id
@@ -21,6 +24,37 @@ public class Vehicle {
      * 车牌号
      */
     private String licensePlateNumber = null;
+
+    public Vehicle() {
+    }
+
+    protected Vehicle(Parcel in) {
+        id = in.readString();
+        licensePlateNumber = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(licensePlateNumber);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
+        @Override
+        public Vehicle createFromParcel(Parcel in) {
+            return new Vehicle(in);
+        }
+
+        @Override
+        public Vehicle[] newArray(int size) {
+            return new Vehicle[size];
+        }
+    };
 
     /**
      * 获取车辆id

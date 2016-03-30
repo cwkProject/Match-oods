@@ -116,6 +116,7 @@ public class VehiclePassedActivity extends AppCompatActivity {
     /**
      * 初始化标题栏
      */
+    @SuppressWarnings("ConstantConditions")
     private void initToolbar() {
         // 得到Toolbar标题栏
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -155,31 +156,34 @@ public class VehiclePassedActivity extends AppCompatActivity {
                 .activity_vehicle_passed_recyclerView);
 
         // 设置item动画
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        if (recyclerView != null) {
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        recyclerView.setHasFixedSize(true);
+            recyclerView.setHasFixedSize(true);
 
-        // 创建布局管理器
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+            // 创建布局管理器
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
-        // 设置布局管理器
-        recyclerView.setLayoutManager(layoutManager);
+            // 设置布局管理器
+            recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setAdapter(viewHolder.adapter);
+            recyclerView.setAdapter(viewHolder.adapter);
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                int lastCount = recyclerView.getAdapter().getItemCount() - recyclerView
-                        .getChildAdapterPosition(recyclerView.getChildAt(0)) - recyclerView
-                        .getChildCount();
-                if (dy > 0 && !viewHolder.loading && viewHolder.hasMoreData && lastCount <=
-                        LAST_ROW_COUNT) {
-                    // 有必要加载更多
-                    loadData(false);
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    int lastCount = recyclerView.getAdapter().getItemCount() - recyclerView
+                            .getChildAdapterPosition(recyclerView.getChildAt(0)) - recyclerView
+                            .getChildCount();
+
+                    if (dy > 0 && !viewHolder.loading && viewHolder.hasMoreData && lastCount <=
+                            LAST_ROW_COUNT) {
+                        // 有必要加载更多
+                        loadData(false);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     /**

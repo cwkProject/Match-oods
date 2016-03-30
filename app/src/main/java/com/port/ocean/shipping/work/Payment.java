@@ -27,7 +27,7 @@ public class Payment extends DefaultWorkModel<String, String, PaymentData> {
 
     @Override
     protected String onTaskUri() {
-        return StaticValue.PAYMENT_URL;
+        return StaticValue.Url.PAYMENT_URL;
     }
 
     @Override

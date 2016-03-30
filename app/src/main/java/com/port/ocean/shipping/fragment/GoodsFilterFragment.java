@@ -160,7 +160,7 @@ public class GoodsFilterFragment extends Fragment {
 
         // 弹出窗口布局
         viewHolder.cardView = (CardView) LayoutInflater.from(getActivity()).inflate(R.layout
-                .layout_bottom_popup_window, null);
+                .layout_popup_window, null);
         viewHolder.popupWindow = new PopupWindow(getActivity());
     }
 

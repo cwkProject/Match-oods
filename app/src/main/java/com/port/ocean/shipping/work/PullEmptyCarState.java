@@ -15,7 +15,8 @@ import org.mobile.library.model.work.DefaultWorkModel;
  * @version 1.0 2015/7/2
  * @since 1.0
  */
-public class PullEmptyCarState extends DefaultWorkModel<String, EmptyCarStateData, EmptyCarStateData> {
+public class PullEmptyCarState extends DefaultWorkModel<String, EmptyCarStateData,
+        EmptyCarStateData> {
     @Override
     protected boolean onCheckParameters(String... parameters) {
         return !(parameters == null || parameters.length < 1);
@@ -23,7 +24,7 @@ public class PullEmptyCarState extends DefaultWorkModel<String, EmptyCarStateDat
 
     @Override
     protected String onTaskUri() {
-        return StaticValue.EMPTY_CAR_STATE;
+        return StaticValue.Url.EMPTY_CAR_STATE;
     }
 
     @Override

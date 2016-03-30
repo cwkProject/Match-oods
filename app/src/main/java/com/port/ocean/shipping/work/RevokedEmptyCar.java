@@ -23,7 +23,7 @@ public class RevokedEmptyCar extends DefaultWorkModel<String, String, RevokedEmp
 
     @Override
     protected String onTaskUri() {
-        return StaticValue.REVOKED_EMPTY_CAR;
+        return StaticValue.Url.REVOKED_EMPTY_CAR;
     }
 
     @Override

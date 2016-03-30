@@ -27,7 +27,7 @@ public class PullGoodsSupply extends DefaultWorkModel<String, List<Goods>, Goods
 
     @Override
     protected String onTaskUri() {
-        return StaticValue.FIND_GOODS_URL;
+        return StaticValue.Url.FIND_GOODS_URL;
     }
 
     @Override

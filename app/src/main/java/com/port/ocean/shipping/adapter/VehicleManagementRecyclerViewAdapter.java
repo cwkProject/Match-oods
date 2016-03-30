@@ -161,6 +161,6 @@ public class VehicleManagementRecyclerViewAdapter extends RecyclerView
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return dataList.size() > 5 ? 5 : dataList.size();
     }
 }

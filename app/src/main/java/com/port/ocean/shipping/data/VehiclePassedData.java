@@ -88,7 +88,7 @@ public class VehiclePassedData extends SimpleJsonDataModel {
 
     @Override
     protected void onExtractData(JSONObject jsonData) throws Exception {
-        JSONArray jsonArray = jsonData.getJSONArray("Data");
+        JSONArray jsonArray = jsonData.getJSONArray(DATA_TAG);
 
         dataList = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -110,6 +110,6 @@ public class VehiclePassedData extends SimpleJsonDataModel {
     protected void onFillRequestParameters(Map<String, String> dataMap) {
         dataMap.put("StartRow", startRow);
         dataMap.put("Count", count);
-        dataMap.put("strVehicleNum", licensePlateNumber);
+        dataMap.put("VehicleNum", licensePlateNumber);
     }
 }
