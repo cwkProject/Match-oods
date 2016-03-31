@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.View;
 
 import com.port.ocean.shipping.R;
+import com.port.ocean.shipping.adapter.RecyclerViewDivider;
 import com.port.ocean.shipping.adapter.VehiclePassedRecyclerViewAdapter;
 import com.port.ocean.shipping.bean.VehiclePassed;
 import com.port.ocean.shipping.work.PullVehiclePassed;
@@ -166,6 +167,9 @@ public class VehiclePassedActivity extends AppCompatActivity {
 
             // 设置布局管理器
             recyclerView.setLayoutManager(layoutManager);
+
+            recyclerView.addItemDecoration(new RecyclerViewDivider(this, LinearLayoutManager
+                    .VERTICAL));
 
             recyclerView.setAdapter(viewHolder.adapter);
 

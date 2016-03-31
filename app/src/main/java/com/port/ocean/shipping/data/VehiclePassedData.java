@@ -79,14 +79,6 @@ public class VehiclePassedData extends SimpleJsonDataModel {
     }
 
     @Override
-    protected boolean onRequestResult(JSONObject handleResult) throws Exception {
-        // 得到执行结果
-        String resultState = handleResult.getString("IsSuccess");
-
-        return resultState != null && "yes".equals(resultState.trim().toLowerCase());
-    }
-
-    @Override
     protected void onExtractData(JSONObject jsonData) throws Exception {
         JSONArray jsonArray = jsonData.getJSONArray(DATA_TAG);
 

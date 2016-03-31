@@ -134,4 +134,7 @@
     <string name="text_save">保存</string>
     <string name="text_delete">删除</string>
 
+    <string name="prompt_license_plate_number_error">车牌号不正确</string>
+    <string name="prompt_data_error">数据异常，请重试</string>
+
 </resources>

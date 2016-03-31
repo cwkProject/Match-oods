@@ -73,14 +73,13 @@ public class VehicleManagementRecyclerViewAdapter extends RecyclerView
     }
 
     /**
-     * 在列表尾部添加一组数据
+     * 在列表头部添加一组数据
      *
      * @param dataList 数据集
      */
     public void add(List<Vehicle> dataList) {
-        int position = this.dataList.size();
-        this.dataList.addAll(dataList);
-        this.notifyItemRangeInserted(position, dataList.size());
+        this.dataList.addAll(0, dataList);
+        this.notifyItemRangeInserted(0, dataList.size());
     }
 
     /**
@@ -91,6 +90,17 @@ public class VehicleManagementRecyclerViewAdapter extends RecyclerView
     public void add(Vehicle data) {
         int position = this.dataList.size();
         this.dataList.add(data);
+        this.notifyItemInserted(position);
+    }
+
+    /**
+     * 在指定位置添加一条数据
+     *
+     * @param data     数据
+     * @param position 指定位置
+     */
+    public void add(Vehicle data, int position) {
+        this.dataList.add(position, data);
         this.notifyItemInserted(position);
     }
 
@@ -152,7 +162,7 @@ public class VehicleManagementRecyclerViewAdapter extends RecyclerView
 
     @Override
     public int getItemViewType(int position) {
-        if (position == dataList.size() - 1) {
+        if (dataList.get(position).getId() == null) {
             return PLUS_ITEM_TYPE;
         }
 
@@ -161,6 +171,6 @@ public class VehicleManagementRecyclerViewAdapter extends RecyclerView
 
     @Override
     public int getItemCount() {
-        return dataList.size() > 5 ? 5 : dataList.size();
+        return dataList.size();
     }
 }

@@ -3,6 +3,7 @@ package com.port.ocean.shipping.activity;
  * Created by 超悟空 on 2016/3/30.
  */
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -17,13 +18,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.port.ocean.shipping.R;
 import com.port.ocean.shipping.bean.Vehicle;
 import com.port.ocean.shipping.function.VehiclePlateSelectList;
 import com.port.ocean.shipping.util.StaticValue;
+import com.port.ocean.shipping.work.DeleteVehicle;
+import com.port.ocean.shipping.work.UpdateVehicle;
 
+import org.mobile.library.common.function.InputMethodController;
 import org.mobile.library.model.function.ISelectList;
+import org.mobile.library.model.work.IWorkEndListener;
 
 import java.util.Arrays;
 
@@ -75,6 +81,11 @@ public class EditVehicleActivity extends AppCompatActivity {
          * 删除按钮
          */
         public AppCompatButton deleteButton = null;
+
+        /**
+         * 当前在编辑的车辆信息
+         */
+        public Vehicle vehicle = null;
     }
 
     /**
@@ -172,6 +183,8 @@ public class EditVehicleActivity extends AppCompatActivity {
         viewHolder.licensePlateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 关闭软键盘
+                InputMethodController.CloseInputMethod(EditVehicleActivity.this);
                 showPopupWindow(v, viewHolder.vehiclePlateSelectList.loadSelect());
             }
         });
@@ -226,8 +239,8 @@ public class EditVehicleActivity extends AppCompatActivity {
      */
     private void initDeleteButton() {
         // 改变着色
-        viewHolder.deleteButton.setSupportBackgroundTintList(getResources().getColorStateList
-                (android.R.color.holo_red_light, null));
+        viewHolder.deleteButton.setSupportBackgroundTintList(getResources().getColorStateList(
+                (android.R.color.holo_red_light)));
 
         // 设置点击事件
         viewHolder.deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -242,26 +255,95 @@ public class EditVehicleActivity extends AppCompatActivity {
      * 删除车辆
      */
     private void onDeleteVehicle() {
+        // 关闭软键盘
+        InputMethodController.CloseInputMethod(this);
 
+        if (viewHolder.vehicle == null) {
+            Toast.makeText(EditVehicleActivity.this, R.string.prompt_data_error, Toast
+                    .LENGTH_SHORT).show();
+            return;
+        }
+
+        viewHolder.deleteButton.setEnabled(false);
+
+        DeleteVehicle deleteVehicle = new DeleteVehicle();
+
+        deleteVehicle.setWorkEndListener(new IWorkEndListener<Void>() {
+            @Override
+            public void doEndWork(boolean state, String message, Void data) {
+                Toast.makeText(EditVehicleActivity.this, message, Toast.LENGTH_SHORT).show();
+                viewHolder.deleteButton.setEnabled(true);
+                if (state) {
+                    // 删除成功
+                    setResult(RESULT_FIRST_USER, null);
+
+                    finish();
+                }
+            }
+        });
+
+        deleteVehicle.beginExecute(viewHolder.vehicle.getId());
     }
 
     /**
      * 保存车辆信息
      */
     private void onSaveVehicle() {
+        // 关闭软键盘
+        InputMethodController.CloseInputMethod(this);
 
+        String licensePlateNumber = viewHolder.licensePlateNumberEditText.getText().toString();
+
+        if (viewHolder.vehicle == null) {
+            Toast.makeText(EditVehicleActivity.this, R.string.prompt_data_error, Toast
+                    .LENGTH_SHORT).show();
+            return;
+        }
+
+        if (licensePlateNumber.length() != 6) {
+            Toast.makeText(this, R.string.prompt_license_plate_number_error, Toast.LENGTH_SHORT)
+                    .show();
+            return;
+        }
+
+        viewHolder.saveButton.setEnabled(false);
+
+        UpdateVehicle updateVehicle = new UpdateVehicle();
+
+        updateVehicle.setWorkEndListener(new IWorkEndListener<Vehicle>() {
+            @Override
+            public void doEndWork(boolean state, String message, Vehicle data) {
+                Toast.makeText(EditVehicleActivity.this, message, Toast.LENGTH_SHORT).show();
+                viewHolder.saveButton.setEnabled(true);
+                if (state) {
+                    // 修改成功
+                    Intent intent = new Intent();
+                    intent.putExtra(StaticValue.IntentTag.VEHICLE_DETAIL_TAG, data);
+
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+                }
+            }
+        });
+
+        updateVehicle.beginExecute(viewHolder.vehicle.getId(), viewHolder.licensePlateButton
+                .getText().toString() + licensePlateNumber);
     }
 
     /**
      * 初始化数据
      */
     private void initData() {
-        Vehicle data = getIntent().getParcelableExtra(StaticValue.IntentTag.VEHICLE_DETAIL_TAG);
+        viewHolder.vehicle = getIntent().getParcelableExtra(StaticValue.IntentTag
+                .VEHICLE_DETAIL_TAG);
 
-        if (data != null && data.getLicensePlateNumber() != null) {
-            viewHolder.licensePlateButton.setText(data.getLicensePlateNumber().substring(0, 1));
-            viewHolder.licensePlateNumberEditText.setText(data.getLicensePlateNumber().substring
-                    (1));
+        if (viewHolder.vehicle != null && viewHolder.vehicle.getLicensePlateNumber() != null) {
+            viewHolder.licensePlateButton.setText(viewHolder.vehicle.getLicensePlateNumber()
+                    .substring(0, 1));
+
+            viewHolder.licensePlateNumberEditText.setText(viewHolder.vehicle
+                    .getLicensePlateNumber().substring(1));
         }
     }
 

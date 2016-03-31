@@ -17,8 +17,11 @@ import com.port.ocean.shipping.adapter.VehicleManagementRecyclerViewAdapter;
 import com.port.ocean.shipping.adapter.VehicleManagementViewHolder;
 import com.port.ocean.shipping.bean.Vehicle;
 import com.port.ocean.shipping.util.StaticValue;
+import com.port.ocean.shipping.work.PullVehicleInfo;
 
+import org.mobile.library.global.GlobalApplication;
 import org.mobile.library.model.operate.OnItemClickListenerForRecyclerViewItem;
+import org.mobile.library.model.work.WorkBack;
 
 import java.util.List;
 
@@ -42,6 +45,11 @@ public class VehicleManagementActivity extends AppCompatActivity {
     private static final int EDIT_VEHICLE_TAG = 200;
 
     /**
+     * 最大车辆数
+     */
+    private static final int MAX_VEHICLE = 6;
+
+    /**
      * 控件集合
      */
     private class ViewHolder {
@@ -49,6 +57,11 @@ public class VehicleManagementActivity extends AppCompatActivity {
          * 列表的数据适配器
          */
         public VehicleManagementRecyclerViewAdapter adapter = null;
+
+        /**
+         * 记录当前操作的车辆位置
+         */
+        public int position = 0;
     }
 
     /**
@@ -138,10 +151,12 @@ public class VehicleManagementActivity extends AppCompatActivity {
                 public void onClick(List<Vehicle> dataSource, VehicleManagementViewHolder holder) {
                     if (holder.getItemViewType() == VehicleManagementRecyclerViewAdapter
                             .PLUS_ITEM_TYPE) {
+                        viewHolder.position = dataSource.size() - 1;
                         // 增加绑定
                         onAdd();
                     } else {
                         // 修改
+                        viewHolder.position = holder.getAdapterPosition();
                         onEdit(dataSource.get(holder.getAdapterPosition()));
                     }
                 }
@@ -174,6 +189,66 @@ public class VehicleManagementActivity extends AppCompatActivity {
      * 加载数据
      */
     private void initData() {
-        viewHolder.adapter.add(new Vehicle());
+
+        PullVehicleInfo pullVehicleInfo = new PullVehicleInfo();
+
+        pullVehicleInfo.setWorkEndListener(new WorkBack<List<Vehicle>>() {
+            @Override
+            public void doEndWork(boolean state, List<Vehicle> data) {
+                if (state) {
+                    if (data != null && data.size() < MAX_VEHICLE) {
+                        data.add(new Vehicle());
+                    }
+                    viewHolder.adapter.add(data);
+                } else {
+                    viewHolder.adapter.add(new Vehicle());
+                }
+            }
+        });
+
+        pullVehicleInfo.beginExecute(GlobalApplication.getLoginStatus().getUserID());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case ADD_VEHICLE_TAG:
+                // 增加车辆
+                if (resultCode == RESULT_OK) {
+                    Vehicle vehicle = data.getParcelableExtra(StaticValue.IntentTag
+                            .VEHICLE_DETAIL_TAG);
+
+                    if (vehicle != null) {
+                        if (viewHolder.adapter.getItemCount() < MAX_VEHICLE) {
+                            viewHolder.adapter.add(vehicle, viewHolder.position);
+                        } else {
+                            viewHolder.adapter.change(viewHolder.position, vehicle);
+                        }
+                    }
+                }
+                break;
+            case EDIT_VEHICLE_TAG:
+                // 编辑车辆
+                if (resultCode == RESULT_OK) {
+                    // 更新车辆
+                    Vehicle vehicle = data.getParcelableExtra(StaticValue.IntentTag
+                            .VEHICLE_DETAIL_TAG);
+
+                    if (vehicle != null) {
+                        viewHolder.adapter.change(viewHolder.position, vehicle);
+                    }
+                    break;
+                }
+
+                if (resultCode == RESULT_FIRST_USER) {
+                    // 删除车辆
+                    viewHolder.adapter.remove(viewHolder.position);
+                    if (viewHolder.adapter.getItemViewType(viewHolder.adapter.getItemCount() - 1)
+                            != VehicleManagementRecyclerViewAdapter.PLUS_ITEM_TYPE) {
+                        viewHolder.adapter.add(new Vehicle());
+                    }
+                }
+                break;
+        }
     }
 }

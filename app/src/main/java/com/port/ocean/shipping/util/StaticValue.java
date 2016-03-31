@@ -130,6 +130,26 @@ public interface StaticValue {
          * 司机身份信息获取地址
          */
         String IDENTITY_INFO_URL = "http://218.92.115.55/M_Sph/UserInfo/InfoForDriver.aspx";
+
+        /**
+         * 增加关联车辆
+         */
+        String ADD_VEHICLE_URL = "http://218.92.115.55/M_Sph/Vehicle/RelateVehicle.aspx";
+
+        /**
+         * 获取已关联车辆信息
+         */
+        String VEHICLE_INFO_URL = "http://218.92.115.55/M_Sph/Vehicle/GetVehicleRelated.aspx";
+
+        /**
+         * 删除已关联车辆
+         */
+        String DELETE_VEHICLE_URL = "http://218.92.115.55/M_Sph/Vehicle/DeleteVehicleRelated.aspx";
+
+        /**
+         * 修改已关联车辆
+         */
+        String UPDATE_VEHICLE_URL = "http://218.92.115.55/M_Sph/Vehicle/UpdateVehicleRelated.aspx";
     }
 
     /**

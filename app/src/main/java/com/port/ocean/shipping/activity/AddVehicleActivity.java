@@ -3,6 +3,7 @@ package com.port.ocean.shipping.activity;
  * Created by 超悟空 on 2016/3/30.
  */
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -17,11 +18,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.port.ocean.shipping.R;
+import com.port.ocean.shipping.bean.Vehicle;
 import com.port.ocean.shipping.function.VehiclePlateSelectList;
+import com.port.ocean.shipping.util.StaticValue;
+import com.port.ocean.shipping.work.AddVehicle;
 
+import org.mobile.library.common.function.InputMethodController;
+import org.mobile.library.global.GlobalApplication;
 import org.mobile.library.model.function.ISelectList;
+import org.mobile.library.model.work.IWorkEndListener;
 
 import java.util.Arrays;
 
@@ -159,6 +167,8 @@ public class AddVehicleActivity extends AppCompatActivity {
         viewHolder.licensePlateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 关闭软键盘
+                InputMethodController.CloseInputMethod(AddVehicleActivity.this);
                 showPopupWindow(v, viewHolder.vehiclePlateSelectList.loadSelect());
             }
         });
@@ -212,7 +222,38 @@ public class AddVehicleActivity extends AppCompatActivity {
      * 保存车辆信息
      */
     private void onSaveVehicle() {
+        // 关闭软键盘
+        InputMethodController.CloseInputMethod(this);
 
+        String licensePlateNumber = viewHolder.licensePlateNumberEditText.getText().toString();
+
+        if (licensePlateNumber.length() != 6) {
+            Toast.makeText(this, R.string.prompt_license_plate_number_error, Toast.LENGTH_SHORT)
+                    .show();
+            return;
+        }
+        viewHolder.saveButton.setEnabled(false);
+
+        AddVehicle addVehicle = new AddVehicle();
+
+        addVehicle.setWorkEndListener(new IWorkEndListener<Vehicle>() {
+            @Override
+            public void doEndWork(boolean state, String message, Vehicle data) {
+                Toast.makeText(AddVehicleActivity.this, message, Toast.LENGTH_SHORT).show();
+                viewHolder.saveButton.setEnabled(true);
+                if (state) {
+                    Intent intent = new Intent();
+                    intent.putExtra(StaticValue.IntentTag.VEHICLE_DETAIL_TAG, data);
+
+                    setResult(RESULT_OK, intent);
+
+                    finish();
+                }
+            }
+        });
+
+        addVehicle.beginExecute(GlobalApplication.getLoginStatus().getUserID(), viewHolder
+                .licensePlateButton.getText().toString() + licensePlateNumber);
     }
 
     /**
