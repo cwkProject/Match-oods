@@ -23,7 +23,7 @@ public class PullVehiclePassed extends DefaultWorkModel<String, List<VehiclePass
 
     @Override
     protected boolean onCheckParameters(String... parameters) {
-        return parameters != null && parameters.length > 1;
+        return parameters != null && parameters.length > 2;
     }
 
     @Override
@@ -40,9 +40,10 @@ public class PullVehiclePassed extends DefaultWorkModel<String, List<VehiclePass
     protected VehiclePassedData onCreateDataModel(String... parameters) {
         VehiclePassedData data = new VehiclePassedData();
 
-        data.setStartRow(parameters[0]);
-        data.setCount(parameters[1]);
-        data.setLicensePlateNumber(parameters.length > 2 ? parameters[2] : null);
+        data.setUserId(parameters[0]);
+        data.setStartRow(parameters[1]);
+        data.setCount(parameters[2]);
+        data.setLicensePlateNumber(parameters.length > 3 ? parameters[3] : null);
 
         return data;
     }

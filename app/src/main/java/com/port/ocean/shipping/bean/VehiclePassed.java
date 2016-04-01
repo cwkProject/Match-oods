@@ -33,6 +33,11 @@ public class VehiclePassed {
     private String auditTime = null;
 
     /**
+     * 标识是否为关注车辆
+     */
+    private boolean attention = false;
+
+    /**
      * 获取车牌号
      *
      * @return 车牌号
@@ -102,5 +107,23 @@ public class VehiclePassed {
      */
     public void setAuditTime(String auditTime) {
         this.auditTime = auditTime;
+    }
+
+    /**
+     * 是否为关注车辆
+     *
+     * @return true表示关注车辆
+     */
+    public boolean isAttention() {
+        return attention;
+    }
+
+    /**
+     * 设置是否为关注车辆
+     *
+     * @param attention true表示关注车辆
+     */
+    public void setAttention(boolean attention) {
+        this.attention = attention;
     }
 }

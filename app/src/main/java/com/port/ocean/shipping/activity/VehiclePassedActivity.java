@@ -22,6 +22,7 @@ import com.port.ocean.shipping.adapter.VehiclePassedRecyclerViewAdapter;
 import com.port.ocean.shipping.bean.VehiclePassed;
 import com.port.ocean.shipping.work.PullVehiclePassed;
 
+import org.mobile.library.global.GlobalApplication;
 import org.mobile.library.model.work.DefaultWorkModel;
 import org.mobile.library.model.work.WorkBack;
 
@@ -264,8 +265,9 @@ public class VehiclePassedActivity extends AppCompatActivity {
         viewHolder.refreshLayout.setRefreshing(true);
 
         // 执行任务
-        pullVehiclePassed.beginExecute(String.valueOf(viewHolder.adapter.getItemCount() + 1),
-                String.valueOf(ROW_COUNT), viewHolder.query);
+        pullVehiclePassed.beginExecute(GlobalApplication.getLoginStatus().getUserID(), String
+                .valueOf(viewHolder.adapter.getItemCount() + 1), String.valueOf(ROW_COUNT),
+                viewHolder.query);
     }
 
     @Override
@@ -312,7 +314,7 @@ public class VehiclePassedActivity extends AppCompatActivity {
      * @param query 查询字符串
      */
     private void searchButtonClick(String query) {
-        viewHolder.query = query;
+        viewHolder.query = query == null ? null : query.toUpperCase();
         initData();
     }
 

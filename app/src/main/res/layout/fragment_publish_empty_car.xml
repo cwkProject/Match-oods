@@ -7,23 +7,17 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/table_layout_row_margin"
-        android:layout_marginTop="@dimen/table_layout_row_margin"
+        android:layout_marginTop="@dimen/layout_toolbar_top_margin"
         android:orientation="vertical"
-        android:padding="5dp"
+        android:padding="@dimen/layout_default_horizontal_padding"
         android:stretchColumns="1">
 
-        <TableRow
-            android:layout_marginTop="@dimen/row_default_divide_height"
-            android:background="@android:color/white">
+        <TableRow>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/image_default_large_size"
+                android:layout_height="@dimen/image_default_large_size"
                 android:layout_column="0"
-                android:layout_marginLeft="@dimen/image_default_margin_left"
-                android:layout_marginRight="@dimen/image_default_margin_right"
-                android:background="@android:color/white"
                 android:scaleType="center"
                 android:src="@mipmap/start_large_icon"/>
 
@@ -32,12 +26,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
-                android:layout_marginLeft="@dimen/edit_default_margin_left"
-                android:background="@android:color/white"
+                android:layout_marginLeft="@dimen/layout_default_spacing"
                 android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
                 android:hint="@string/edit_start_hint"
-                android:paddingLeft="@dimen/edit_default_padding_left"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_view_default_text_size"/>
@@ -45,18 +37,12 @@
         </TableRow>
 
         <TableRow
-            android:layout_marginTop="@dimen/row_default_divide_height"
-            android:background="@android:color/white"
-            android:gravity="center">
+            android:layout_marginTop="@dimen/layout_default_spacing">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/image_default_large_size"
+                android:layout_height="@dimen/image_default_large_size"
                 android:layout_column="0"
-                android:layout_marginLeft="@dimen/image_default_margin_left"
-                android:layout_marginRight="@dimen/image_default_margin_right"
-                android:background="@android:color/white"
-                android:gravity="center"
                 android:scaleType="center"
                 android:src="@mipmap/end_large_icon"/>
 
@@ -65,19 +51,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="1"
-                android:layout_marginLeft="@dimen/edit_default_margin_left"
-                android:background="@android:color/white"
+                android:layout_marginLeft="@dimen/layout_default_spacing"
                 android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
                 android:hint="@string/edit_end_hint"
-                android:paddingLeft="@dimen/edit_default_padding_left"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_view_default_text_size"/>
 
         </TableRow>
 
-        <TableRow android:layout_marginTop="10dp">
+        <TableRow android:layout_marginTop="@dimen/layout_default_spacing">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -108,12 +92,11 @@
             </LinearLayout>
         </TableRow>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/fragment_publish_empty_car_button"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_default_height"
-            android:layout_marginTop="20dp"
-            android:background="@color/orange"
+            android:layout_height="@dimen/action_button_size"
+            android:layout_marginTop="@dimen/layout_default_vertical_margin"
             android:text="@string/publish_car_button"
             android:textColor="@android:color/white"
             android:textSize="@dimen/button_default_text_size"

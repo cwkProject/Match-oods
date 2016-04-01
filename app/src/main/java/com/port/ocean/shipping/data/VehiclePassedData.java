@@ -38,6 +38,11 @@ public class VehiclePassedData extends SimpleJsonDataModel {
     private String licensePlateNumber = null;
 
     /**
+     * 用户id
+     */
+    private String userId = null;
+
+    /**
      * 放行信息
      */
     private List<VehiclePassed> dataList = null;
@@ -70,6 +75,15 @@ public class VehiclePassedData extends SimpleJsonDataModel {
     }
 
     /**
+     * 设置用户id
+     *
+     * @param userId 用户id
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
      * 获取车辆放行信息
      *
      * @return 放行信息列表
@@ -86,12 +100,13 @@ public class VehiclePassedData extends SimpleJsonDataModel {
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONArray row = jsonArray.getJSONArray(i);
 
-            if (row.length() > 3) {
+            if (row.length() > 4) {
                 VehiclePassed data = new VehiclePassed();
                 data.setLicensePlateNumber(row.getString(0));
                 data.setLocation(row.getString(1));
                 data.setStorage(row.getString(2));
                 data.setAuditTime(row.getString(3));
+                data.setAttention("1".equals(row.getString(4)));
 
                 dataList.add(data);
             }
@@ -103,5 +118,6 @@ public class VehiclePassedData extends SimpleJsonDataModel {
         dataMap.put("StartRow", startRow);
         dataMap.put("Count", count);
         dataMap.put("VehicleNum", licensePlateNumber);
+        dataMap.put("CodeUser", userId);
     }
 }

@@ -3,6 +3,7 @@ package com.port.ocean.shipping.adapter;
  * Created by 超悟空 on 2016/3/25.
  */
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -105,6 +106,13 @@ public class VehiclePassedRecyclerViewAdapter extends RecyclerView
         holder.locationTextView.setText(data.getLocation());
         holder.storageTextView.setText(data.getStorage());
         holder.auditTimeTextView.setText(data.getAuditTime());
+
+        if (data.isAttention()) {
+            holder.licensePlateNumberTextView.setTextColor(holder.itemView.getResources()
+                    .getColor(android.R.color.holo_blue_dark));
+        } else {
+            holder.licensePlateNumberTextView.setTextColor(Color.BLACK);
+        }
 
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -8,12 +8,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.PopupWindow;
@@ -73,9 +73,9 @@ public class PublishEmptyCarFragment extends Fragment {
         public CitySelectList endCitySelectList = null;
 
         /**
-         * 查找按钮
+         * 发布按钮
          */
-        public Button button = null;
+        public AppCompatButton button = null;
 
         /**
          * 始发地输入框
@@ -198,7 +198,8 @@ public class PublishEmptyCarFragment extends Fragment {
      */
     private void initViewHolder(View rootView) {
         // 查询按钮
-        viewHolder.button = (Button) rootView.findViewById(R.id.fragment_publish_empty_car_button);
+        viewHolder.button = (AppCompatButton) rootView.findViewById(R.id
+                .fragment_publish_empty_car_button);
         // 始发地输入框
         viewHolder.startEditText = (EditText) rootView.findViewById(R.id
                 .fragment_publish_empty_car_start_editText);
@@ -252,6 +253,10 @@ public class PublishEmptyCarFragment extends Fragment {
      * 初始化发布空车按钮
      */
     private void initButton() {
+
+        // 改变着色
+        viewHolder.button.setSupportBackgroundTintList(getResources().getColorStateList((android
+                .R.color.holo_red_light)));
 
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override

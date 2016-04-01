@@ -6,10 +6,10 @@ package com.port.ocean.shipping.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +33,11 @@ public class RevokedEmptyCarFragment extends Fragment {
      * 空车数据源
      */
     private EmptyCarStateData data = null;
+
+    /**
+     * 撤销按钮
+     */
+    private AppCompatButton button = null;
 
     @Nullable
     @Override
@@ -120,29 +125,30 @@ public class RevokedEmptyCarFragment extends Fragment {
     }
 
     /**
-     * 初始化查找按钮
+     * 初始化撤销按钮
      *
      * @param rootView 根布局
      */
     private void initButton(final View rootView) {
-        final Button button = (Button) rootView.findViewById(R.id
-                .fragment_revoked_empty_car_button);
+        button = (AppCompatButton) rootView.findViewById(R.id.fragment_revoked_empty_car_button);
+
+        // 改变着色
+        button.setSupportBackgroundTintList(getResources().getColorStateList((android.R.color
+                .holo_red_light)));
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 button.setEnabled(false);
-                onRevoked(rootView);
+                onRevoked();
             }
         });
     }
 
     /**
      * 撤销发布
-     *
-     * @param rootView 根布局
      */
-    private void onRevoked(final View rootView) {
+    private void onRevoked() {
         RevokedEmptyCar revokedEmptyCar = new RevokedEmptyCar();
         revokedEmptyCar.setWorkEndListener(new WorkBack<String>() {
             @Override
@@ -153,9 +159,6 @@ public class RevokedEmptyCarFragment extends Fragment {
                 if (state) {
                     getActivity().finish();
                 }
-
-                Button button = (Button) rootView.findViewById(R.id
-                        .fragment_revoked_empty_car_button);
 
                 button.setEnabled(true);
             }
