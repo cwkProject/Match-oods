@@ -3,7 +3,7 @@ package com.port.ocean.shipping.work;
  * Created by 超悟空 on 2015/6/26.
  */
 
-import com.port.ocean.shipping.data.Goods;
+import com.port.ocean.shipping.bean.Goods;
 import com.port.ocean.shipping.data.GoodsSupplyData;
 import com.port.ocean.shipping.util.StaticValue;
 

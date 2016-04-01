@@ -1,4 +1,4 @@
-package com.port.ocean.shipping.data;
+package com.port.ocean.shipping.bean;
 /**
  * Created by 超悟空 on 2015/6/26.
  */

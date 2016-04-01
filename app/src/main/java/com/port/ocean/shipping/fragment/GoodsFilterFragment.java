@@ -16,7 +16,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.port.ocean.shipping.R;
-import com.port.ocean.shipping.data.Goods;
+import com.port.ocean.shipping.bean.Goods;
 import com.port.ocean.shipping.function.CargoTypeSelectList;
 import com.port.ocean.shipping.function.VehicleTypeSelectList;
 

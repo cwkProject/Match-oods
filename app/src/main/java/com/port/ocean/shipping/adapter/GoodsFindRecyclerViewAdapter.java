@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.port.ocean.shipping.R;
-import com.port.ocean.shipping.data.Goods;
+import com.port.ocean.shipping.bean.Goods;
 
 import org.mobile.library.model.operate.OnItemClickListenerForRecyclerViewItem;
 

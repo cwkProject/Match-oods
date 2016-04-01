@@ -35,7 +35,7 @@ import com.port.ocean.shipping.activity.GoodsSupplyContentActivity;
 import com.port.ocean.shipping.adapter.GoodsFindItemViewHolder;
 import com.port.ocean.shipping.adapter.GoodsFindRecyclerViewAdapter;
 import com.port.ocean.shipping.adapter.GoodsItemDivider;
-import com.port.ocean.shipping.data.Goods;
+import com.port.ocean.shipping.bean.Goods;
 import com.port.ocean.shipping.util.StaticValue;
 import com.port.ocean.shipping.work.PullGoodsSupply;
 

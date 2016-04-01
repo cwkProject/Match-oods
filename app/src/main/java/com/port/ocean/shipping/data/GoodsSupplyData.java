@@ -5,6 +5,7 @@ package com.port.ocean.shipping.data;
 
 import android.util.Log;
 
+import com.port.ocean.shipping.bean.Goods;
 import com.port.ocean.shipping.util.TypeConvert;
 
 import org.json.JSONArray;
