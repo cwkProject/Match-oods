@@ -239,6 +239,7 @@
 
             <TableRow
                 android:layout_marginTop="@dimen/table_layout_row_margin"
+                android:visibility="gone"
                 android:background="@color/white"
                 android:gravity="center"
                 android:minHeight="@dimen/edit_default_height">
@@ -272,6 +273,7 @@
             </TableRow>
 
             <TableRow
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/row_default_divide_height"
                 android:background="@color/white"
                 android:gravity="center"
@@ -307,6 +309,7 @@
 
             <TableRow
                 android:layout_marginTop="@dimen/row_default_divide_height"
+                android:visibility="gone"
                 android:background="@color/white"
                 android:gravity="center"
                 android:minHeight="@dimen/edit_default_height">
